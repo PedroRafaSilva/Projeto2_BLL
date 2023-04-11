@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="default">
+
+        <class>Agendamento.Agendamento</class>
+        <class>AgendamentoExtra.AgendamentoExtra</class>
+        <class>CodPostal.CodPostal</class>
+        <class>Comprimento.Comprimento</class>
+        <class>Embarcacao.Embarcacao</class>
+        <class>EstadoAgendamento.EstadoAgendamento</class>
+        <class>EstadoPagamento.EstadoPagamento</class>
+        <class>Extra.Extra</class>
+        <class>Fatura.Fatura</class>
+        <class>ListaEmbarcacao.ListaEmbarcacao</class>
+        <class>ListaEstadoAgendamento.ListaEstadoAgendamento</class>
+        <class>ListaEstadoFatura.ListaEstadoFatura</class>
+        <class>Marina.Marina</class>
+        <class>Oficina.Oficina</class>
+        <class>Pagamento.Pagamento</class>
+        <class>PedidoManutencao.PedidoManutencao</class>
+        <class>TipoUtilizador.TipoUtilizador</class>
+        <class>Utilizador.Utilizador</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://aavandredns.myqnapcloud.com:5432/postgres"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="andreraspberrypi"/>
+            <property name="hibernate.connection.password" value="PedroAndre123"/>
+        </properties>
+    </persistence-unit>
+</persistence>
