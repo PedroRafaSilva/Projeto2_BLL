@@ -11,7 +11,7 @@ public class CodPostalRepository {
 
     private static final String SELECT_ALL = "SELECT * FROM \"Projecto1\".\"CodPostal\"";
     private static final String SELECT_BY_ID = "SELECT * FROM \"Projecto1\".\"CodPostal\" WHERE \"cpostal\" = ?";
-    private static final String INSERT = "INSERT INTO \"Projecto1\".\"CodPostal\" (localidade) VALUES (?)";
+    private static final String INSERT = "INSERT INTO \"Projecto1\".\"CodPostal\" (cpostal, localidade) VALUES (?, ?)";
     private static final String UPDATE = "UPDATE \"Projecto1\".\"CodPostal\" SET localidade = ? WHERE \"cpostal\" = ?";
     private static final String DELETE = "DELETE FROM \"Projecto1\".\"CodPostal\" WHERE \"cpostal\"= ?";
 
@@ -23,6 +23,7 @@ public class CodPostalRepository {
              ResultSet rs = stmt.executeQuery(SELECT_ALL)) {
             while (rs.next()) {
                 CodPostal codPostal = new CodPostal();
+                codPostal.setCpostal(rs.getString("cpostal"));
                 codPostal.setLocalidade(rs.getString("localidade"));
                 codPostals.add(codPostal);
             }
@@ -33,7 +34,8 @@ public class CodPostalRepository {
     public CodPostal saveCodPostal(CodPostal codPostal) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, codPostal.getLocalidade());
+            pstmt.setString(1, codPostal.getCpostal());
+            pstmt.setString(2, codPostal.getLocalidade());
             pstmt.executeUpdate();
 
             try (ResultSet rs = pstmt.getGeneratedKeys()) {
@@ -53,6 +55,7 @@ public class CodPostalRepository {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     codPostal = new CodPostal();
+                    codPostal.setCpostal(rs.getString("cpostal"));
                     codPostal.setLocalidade(rs.getString("localidade"));
                 }
             }
@@ -63,7 +66,8 @@ public class CodPostalRepository {
     public CodPostal updateCodPostal(CodPostal codPostal) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
-            pstmt.setString(1, codPostal.getLocalidade());
+            pstmt.setString(1, codPostal.getCpostal());
+            pstmt.setString(2, codPostal.getLocalidade());
             pstmt.executeUpdate();
         }
         return codPostal;

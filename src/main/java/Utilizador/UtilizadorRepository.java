@@ -43,7 +43,7 @@ public class UtilizadorRepository {
              PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, utilizador.getNome());
             pstmt.setString(2, utilizador.getTelefone());
-            pstmt.setString(6, utilizador.getEmail());
+            pstmt.setString(3, utilizador.getEmail());
             pstmt.setInt(4, utilizador.getNif());
             pstmt.setString(5, utilizador.getRua());
             pstmt.setInt(6, utilizador.getPorta());
@@ -91,7 +91,7 @@ public class UtilizadorRepository {
              PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
             pstmt.setString(1, utilizador.getNome());
             pstmt.setString(2, utilizador.getTelefone());
-            pstmt.setString(6, utilizador.getEmail());
+            pstmt.setString(3, utilizador.getEmail());
             pstmt.setInt(4, utilizador.getNif());
             pstmt.setString(5, utilizador.getRua());
             pstmt.setInt(6, utilizador.getPorta());
