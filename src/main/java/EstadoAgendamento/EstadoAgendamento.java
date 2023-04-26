@@ -3,6 +3,7 @@ package EstadoAgendamento;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Projecto1\".\"EstadoAgendamento\"")
 public class EstadoAgendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

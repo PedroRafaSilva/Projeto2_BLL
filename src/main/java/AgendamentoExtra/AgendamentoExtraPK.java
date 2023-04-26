@@ -17,6 +17,11 @@ public class AgendamentoExtraPK implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idExtra;
 
+    public AgendamentoExtraPK(int idAgendamento, int idExtra) {
+        this.idAgendamento = idAgendamento;
+        this.idExtra = idExtra;
+    }
+
     public int getIdAgendamento() {
         return idAgendamento;
     }

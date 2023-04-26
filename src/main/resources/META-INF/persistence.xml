@@ -24,7 +24,7 @@
         <class>TipoUtilizador.TipoUtilizador</class>
         <class>Utilizador.Utilizador</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://aavandredns.myqnapcloud.com:5432/postgres"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://aavandredns.myqnapcloud.com:5432/Projeto1"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.username" value="andreraspberrypi"/>
             <property name="hibernate.connection.password" value="PedroAndre123"/>

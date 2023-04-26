@@ -1,115 +1,65 @@
 package Utilizador;
 
-import projeto2.DatabaseConnection;
-
-import java.sql.*;
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
 
 public class UtilizadorRepository {
 
-    private static final String SELECT_ALL = "SELECT * FROM \"Projecto1\".\"Utilizador\"";
-    private static final String SELECT_BY_ID = "SELECT * FROM \"Projecto1\".\"Utilizador\" WHERE \"idUtilizador\" = ?";
-    private static final String INSERT = "INSERT INTO \"Projecto1\".\"Utilizador\" (nome, telefone, email, nif, rua, porta, \"cPostal\", \"idTipoUtilizador\", username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE \"Projecto1\".\"Utilizador\" SET nome = ?, telefone = ?, email = ?, nif = ?, rua = ?, porta = ?, \"cPostal\" = ?, \"idTipoUtilizador\" = ?, username = ?, password = ? WHERE \"idUtilizador\" = ?";
-    private static final String DELETE = "DELETE FROM \"Projecto1\".\"Utilizador\" WHERE \"idUtilizador\"= ?";
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-    public List<Utilizador> getAllUtilizadors() throws SQLException {
-        List<Utilizador> utilizadors = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SELECT_ALL)) {
-            while (rs.next()) {
-                Utilizador utilizador = new Utilizador();
-                utilizador.setNome(rs.getString("nome"));
-                utilizador.setTelefone(rs.getString("telefone"));
-                utilizador.setEmail(rs.getString("email"));
-                utilizador.setNif(rs.getInt("nif"));
-                utilizador.setRua(rs.getString("rua"));
-                utilizador.setPorta(rs.getInt("porta"));
-                utilizador.setcPostal(rs.getString("cPostal"));
-                utilizador.setIdTipoUtilizador(rs.getInt("idTipoUtilizador"));
-                utilizador.setUsername(rs.getString("username"));
-                utilizador.setPassword(rs.getString("password"));
-                utilizadors.add(utilizador);
-            }
-        }
-        return utilizadors;
+    public List<Utilizador> getAllUtilizadores() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Utilizador> root = cq.from(Utilizador.class);
+        cq.select(root);
+        TypedQuery<Utilizador> query = em.createQuery(cq);
+        List<Utilizador> orders = query.getResultList();
+        em.close();
+        return orders;
     }
 
-    public Utilizador saveUtilizador(Utilizador utilizador) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, utilizador.getNome());
-            pstmt.setString(2, utilizador.getTelefone());
-            pstmt.setString(3, utilizador.getEmail());
-            pstmt.setInt(4, utilizador.getNif());
-            pstmt.setString(5, utilizador.getRua());
-            pstmt.setInt(6, utilizador.getPorta());
-            pstmt.setString(7, utilizador.getcPostal());
-            pstmt.setInt(8, utilizador.getIdTipoUtilizador());
-            pstmt.setString(9, utilizador.getUsername());
-            pstmt.setString(10, utilizador.getPassword());
-            pstmt.executeUpdate();
+    public void createUtilizador(Utilizador utilizador) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(utilizador);
+        em.getTransaction().commit();
+        em.close();
+    }
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    utilizador.setIdUtilizador(rs.getInt(1));
-                }
-            }
-        }
+    public Utilizador getUtilizadorById(int id) {
+        EntityManager em = emf.createEntityManager();
+        Utilizador utilizador = em.find(Utilizador.class, id);
+        em.close();
         return utilizador;
     }
 
-    public Utilizador findUtilizadorById(int id) throws SQLException {
-        Utilizador utilizador = null;
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SELECT_BY_ID)) {
-            pstmt.setInt(1, id);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    utilizador = new Utilizador();
-                    utilizador.setNome(rs.getString("nome"));
-                    utilizador.setTelefone(rs.getString("telefone"));
-                    utilizador.setEmail(rs.getString("email"));
-                    utilizador.setNif(rs.getInt("nif"));
-                    utilizador.setRua(rs.getString("rua"));
-                    utilizador.setPorta(rs.getInt("porta"));
-                    utilizador.setcPostal(rs.getString("cPostal"));
-                    utilizador.setIdTipoUtilizador(rs.getInt("idTipoUtilizador"));
-                    utilizador.setUsername(rs.getString("username"));
-                    utilizador.setPassword(rs.getString("password"));
-                }
-            }
-        }
-        return utilizador;
+    public void updateUtilizador(Utilizador utilizador) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(utilizador);
+        em.getTransaction().commit();
+        em.close();
+    }
+    public void deleteUtilizador(int id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Utilizador utilizador = em.find(Utilizador.class, id);
+        em.remove(utilizador);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    public Utilizador updateUtilizador(Utilizador utilizador) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
-            pstmt.setString(1, utilizador.getNome());
-            pstmt.setString(2, utilizador.getTelefone());
-            pstmt.setString(3, utilizador.getEmail());
-            pstmt.setInt(4, utilizador.getNif());
-            pstmt.setString(5, utilizador.getRua());
-            pstmt.setInt(6, utilizador.getPorta());
-            pstmt.setString(7, utilizador.getcPostal());
-            pstmt.setInt(8, utilizador.getIdTipoUtilizador());
-            pstmt.setString(9, utilizador.getUsername());
-            pstmt.setString(10, utilizador.getPassword());
-            pstmt.executeUpdate();
-        }
-        return utilizador;
-    }
-
-    public void deleteUtilizador(int id) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(DELETE)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        }
+    public boolean isUserAlreadyRegistered(String username, String password) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT COUNT(u) FROM Utilizador u WHERE u.username = :username AND u.password = :password");
+        query.setParameter("username", username);
+        query.setParameter("password", password);
+        Long count = (Long) query.getSingleResult();
+        return count > 0;
     }
 }
 

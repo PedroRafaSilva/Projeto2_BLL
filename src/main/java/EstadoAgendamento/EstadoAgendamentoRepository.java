@@ -1,79 +1,60 @@
 package EstadoAgendamento;
 
-import projeto2.DatabaseConnection;
 
-import java.sql.*;
-import java.util.ArrayList;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
 
 public class EstadoAgendamentoRepository {
 
-    private static final String SELECT_ALL = "SELECT * FROM \"Projecto1\".\"EstadoAgendamento\"";
-    private static final String SELECT_BY_ID = "SELECT * FROM \"Projecto1\".\"EstadoAgendamento\" WHERE \"idEstado\" = ?";
-    private static final String INSERT = "INSERT INTO \"Projecto1\".\"EstadoAgendamento\" (\"Estado\") VALUES (?)";
-    private static final String UPDATE = "UPDATE \"Projecto1\".\"EstadoAgendamento\" SET \"Estado\" = ? WHERE \"idEstado\" = ?";
-    private static final String DELETE = "DELETE FROM \"Projecto1\".\"EstadoAgendamento\" WHERE \"idEstado\"= ?";
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-    public List<EstadoAgendamento> getAllEstadoAgendamentos() throws SQLException {
-        List<EstadoAgendamento> estadoAgendamentos = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SELECT_ALL)) {
-            while (rs.next()) {
-                EstadoAgendamento estadoAgendamento = new EstadoAgendamento();
-                estadoAgendamento.setEstado(rs.getString("Estado"));
-                estadoAgendamentos.add(estadoAgendamento);
-            }
-        }
-        return estadoAgendamentos;
+    public List<EstadoAgendamento> getAllUtilizadores() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<EstadoAgendamento> cq = cb.createQuery(EstadoAgendamento.class);
+        Root<EstadoAgendamento> root = cq.from(EstadoAgendamento.class);
+        cq.select(root);
+        TypedQuery<EstadoAgendamento> query = em.createQuery(cq);
+        List<EstadoAgendamento> orders = query.getResultList();
+        em.close();
+        return orders;
     }
 
-    public EstadoAgendamento saveEstadoAgendamento(EstadoAgendamento estadoAgendamento) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, estadoAgendamento.getEstado());
-            pstmt.executeUpdate();
+    public void createEstadoAgendamento(EstadoAgendamento estadoAgendamento) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(estadoAgendamento);
+        em.getTransaction().commit();
+        em.close();
+    }
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    estadoAgendamento.setIdEstado(rs.getInt(1));
-                }
-            }
-        }
+    public EstadoAgendamento getEstadoAgendamentoById(int id) {
+        EntityManager em = emf.createEntityManager();
+        EstadoAgendamento estadoAgendamento = em.find(EstadoAgendamento.class, id);
+        em.close();
         return estadoAgendamento;
     }
 
-    public EstadoAgendamento findEstadoAgendamentoById(String idEstado) throws SQLException {
-        EstadoAgendamento estadoAgendamento = null;
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SELECT_BY_ID)) {
-            pstmt.setString(1, idEstado);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    estadoAgendamento = new EstadoAgendamento();
-                    estadoAgendamento.setEstado(rs.getString("Estado"));
-                }
-            }
-        }
-        return estadoAgendamento;
+    public void updateEstadoAgendamento(EstadoAgendamento estadoAgendamento) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(estadoAgendamento);
+        em.getTransaction().commit();
+        em.close();
     }
-
-    public EstadoAgendamento updateEstadoAgendamento(EstadoAgendamento estadoAgendamento) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
-            pstmt.setString(1, estadoAgendamento.getEstado());
-            pstmt.executeUpdate();
-        }
-        return estadoAgendamento;
-    }
-
-    public void deleteEstadoAgendamento(String idEstado) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(DELETE)) {
-            pstmt.setString(1, idEstado);
-            pstmt.executeUpdate();
-        }
+    public void deleteEstadoAgendamento(int id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        EstadoAgendamento estadoAgendamento = em.find(EstadoAgendamento.class, id);
+        em.remove(estadoAgendamento);
+        em.getTransaction().commit();
+        em.close();
     }
 }
 
