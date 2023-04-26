@@ -1,88 +1,58 @@
 package CodPostal;
 
-import projeto2.DatabaseConnection;
-
-import java.sql.*;
-import java.util.ArrayList;
+import jakarta.persistence .*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
 
 public class CodPostalRepository {
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-    private static final String SELECT_ALL = "SELECT * FROM \"Projecto1\".\"CodPostal\"";
-    private static final String SELECT_BY_ID = "SELECT * FROM \"Projecto1\".\"CodPostal\" WHERE \"cpostal\" = ?";
-    private static final String INSERT = "INSERT INTO \"Projecto1\".\"CodPostal\" (cpostal, localidade) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE \"Projecto1\".\"CodPostal\" SET localidade = ? WHERE \"cpostal\" = ?";
-    private static final String DELETE = "DELETE FROM \"Projecto1\".\"CodPostal\" WHERE \"cpostal\"= ?";
-
-    public List<CodPostal> getAllCodPostals() throws SQLException {
-        List<CodPostal> codPostals = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SELECT_ALL)) {
-            while (rs.next()) {
-                CodPostal codPostal = new CodPostal();
-                codPostal.setCpostal(rs.getString("cpostal"));
-                codPostal.setLocalidade(rs.getString("localidade"));
-                codPostals.add(codPostal);
-            }
-        }
-        return codPostals;
+    public List<CodPostal> getAllCodPostals() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<CodPostal> cq = cb.createQuery(CodPostal.class);
+        Root<CodPostal> root = cq.from(CodPostal.class);
+        cq.select(root);
+        TypedQuery<CodPostal> query = em.createQuery(cq);
+        List<CodPostal> orders = query.getResultList();
+        em.close();
+        return orders;
     }
 
-    public CodPostal saveCodPostal(CodPostal codPostal) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, codPostal.getCpostal());
-            pstmt.setString(2, codPostal.getLocalidade());
-            pstmt.executeUpdate();
+    public void createCodPostal(CodPostal codPostal) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(codPostal);
+        em.getTransaction().commit();
+        em.close();
+    }
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    codPostal.setCpostal(rs.getString(1));
-                }
-            }
-        }
+    public CodPostal getCodPostalById(String id) {
+        EntityManager em = emf.createEntityManager();
+        CodPostal codPostal = em.find(CodPostal.class, id);
+        em.close();
         return codPostal;
     }
 
-    public CodPostal findCodPostalByCpostal(String cpostal) throws SQLException {
-        CodPostal codPostal = null;
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SELECT_BY_ID)) {
-            pstmt.setString(1, cpostal);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    codPostal = new CodPostal();
-                    codPostal.setCpostal(rs.getString("cpostal"));
-                    codPostal.setLocalidade(rs.getString("localidade"));
-                }
-            }
-        }
-        return codPostal;
+    public void updateCodPostal(CodPostal codPostal) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(codPostal);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    public CodPostal updateCodPostal(CodPostal codPostal) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
-            pstmt.setString(1, codPostal.getCpostal());
-            pstmt.setString(2, codPostal.getLocalidade());
-            pstmt.executeUpdate();
-        }
-        return codPostal;
+    public void deleteCodPostal(String id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        CodPostal codPostal = em.find(CodPostal.class, id);
+        em.remove(codPostal);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    public void deleteCodPostal(String cpostal) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(DELETE)) {
-            pstmt.setString(1, cpostal);
-            pstmt.executeUpdate();
-        }
-    }
 }
-
-
-
-
 

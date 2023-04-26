@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 @Entity
+@Table(name = "\"Projecto1\".\"Agendamento\"")
 public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

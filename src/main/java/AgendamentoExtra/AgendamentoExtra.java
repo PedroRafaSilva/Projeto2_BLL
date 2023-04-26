@@ -3,6 +3,7 @@ package AgendamentoExtra;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Projecto1\".\"AgendamentoExtra\"")
 @IdClass(AgendamentoExtraPK.class)
 public class AgendamentoExtra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

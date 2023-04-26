@@ -3,7 +3,7 @@ package CodPostal;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "CodPostal")
+@Table(name = "\"Projecto1\".\"CodPostal\"")
 public class CodPostal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -3,6 +3,7 @@ package Comprimento;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Projecto1\".\"Comprimento\"")
 public class Comprimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

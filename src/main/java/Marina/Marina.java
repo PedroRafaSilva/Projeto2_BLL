@@ -3,6 +3,7 @@ package Marina;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Projecto1\".\"Marina\"")
 public class Marina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

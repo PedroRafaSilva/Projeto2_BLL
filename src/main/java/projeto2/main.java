@@ -1,7 +1,11 @@
 package projeto2;
 
+import AgendamentoExtra.AgendamentoExtraService;
+import CodPostal.CodPostalRepository;
+import Embarcacao.EmbarcacaoService;
 import EstadoAgendamento.EstadoAgendamento;
 import EstadoAgendamento.EstadoAgendamentoRepository;
+import Marina.MarinaService;
 import Utilizador.Utilizador.*;
 import Utilizador.UtilizadorService;
 
@@ -11,8 +15,8 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args){
-       UtilizadorService utilizadorRepository = new UtilizadorService();
-       System.out.println(utilizadorRepository.isUserAlreadyRegistered("Pedro", "Pedro"));
+        MarinaService marinaService = new MarinaService();
+        marinaService.getAllMarinas();
 
     }
 }
