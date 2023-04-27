@@ -28,4 +28,8 @@ public class UtilizadorService {
     public boolean isUserAlreadyRegistered(String username, String password) {
         return utilizadorRepository.isUserAlreadyRegistered(username, password);
     }
+
+    public Utilizador getUtilizadorByNome(String nome){
+        return utilizadorRepository.findByName(nome);
+    }
 }

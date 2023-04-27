@@ -3,6 +3,7 @@ package Oficina;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Projecto1\".\"Oficina\"")
 public class Oficina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

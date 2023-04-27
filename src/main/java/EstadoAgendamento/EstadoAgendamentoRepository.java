@@ -14,7 +14,7 @@ public class EstadoAgendamentoRepository {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-    public List<EstadoAgendamento> getAllUtilizadores() {
+    public List<EstadoAgendamento> getAllEstadoAgendamentos() {
         EntityManager em = emf.createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<EstadoAgendamento> cq = cb.createQuery(EstadoAgendamento.class);

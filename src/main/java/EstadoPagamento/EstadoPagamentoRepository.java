@@ -1,85 +1,61 @@
 package EstadoPagamento;
 
-import projeto2.DatabaseConnection;
 
-import java.sql.*;
-import java.util.ArrayList;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
 
 public class EstadoPagamentoRepository {
 
-    private static final String SELECT_ALL = "SELECT * FROM \"Projecto1\".\"EstadoPagamento\"";
-    private static final String SELECT_BY_ID = "SELECT * FROM \"Projecto1\".\"EstadoPagamento\" WHERE \"idEstado\" = ?";
-    private static final String INSERT = "INSERT INTO \"Projecto1\".\"EstadoPagamento\" (\"Estado\") VALUES (?)";
-    private static final String UPDATE = "UPDATE \"Projecto1\".\"EstadoPagamento\" SET \"Estado\" = ? WHERE \"idEstado\" = ?";
-    private static final String DELETE = "DELETE FROM \"Projecto1\".\"EstadoPagamento\" WHERE \"idEstado\"= ?";
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-    public List<EstadoPagamento> getAllEstadoPagamentos() throws SQLException {
-        List<EstadoPagamento> estadoPagamentos = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SELECT_ALL)) {
-            while (rs.next()) {
-                EstadoPagamento estadoPagamento = new EstadoPagamento();
-                estadoPagamento.setEstado(rs.getString("Estado"));
-                estadoPagamentos.add(estadoPagamento);
-            }
-        }
-        return estadoPagamentos;
+    public List<EstadoPagamento> getAllEstadoPagamentos() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<EstadoPagamento> cq = cb.createQuery(EstadoPagamento.class);
+        Root<EstadoPagamento> root = cq.from(EstadoPagamento.class);
+        cq.select(root);
+        TypedQuery<EstadoPagamento> query = em.createQuery(cq);
+        List<EstadoPagamento> orders = query.getResultList();
+        em.close();
+        return orders;
     }
 
-    public EstadoPagamento saveEstadoPagamento(EstadoPagamento estadoPagamento) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, estadoPagamento.getEstado());
-            pstmt.executeUpdate();
+    public void createEstadoPagamento(EstadoPagamento estadoPagamento) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(estadoPagamento);
+        em.getTransaction().commit();
+        em.close();
+    }
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    estadoPagamento.setIdEstado(rs.getInt(1));
-                }
-            }
-        }
+    public EstadoPagamento getEstadoPagamentoById(int id) {
+        EntityManager em = emf.createEntityManager();
+        EstadoPagamento estadoPagamento = em.find(EstadoPagamento.class, id);
+        em.close();
         return estadoPagamento;
     }
 
-    public EstadoPagamento findEstadoPagamentoById(String idEstado) throws SQLException {
-        EstadoPagamento estadoPagamento = null;
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SELECT_BY_ID)) {
-            pstmt.setString(1, idEstado);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    estadoPagamento = new EstadoPagamento();
-                    estadoPagamento.setEstado(rs.getString("Estado"));
-                }
-            }
-        }
-        return estadoPagamento;
+    public void updateEstadoPagamento(EstadoPagamento estadoPagamento) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(estadoPagamento);
+        em.getTransaction().commit();
+        em.close();
     }
-
-    public EstadoPagamento updateEstadoPagamento(EstadoPagamento estadoPagamento) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
-            pstmt.setString(1, estadoPagamento.getEstado());
-            pstmt.executeUpdate();
-        }
-        return estadoPagamento;
-    }
-
-    public void deleteEstadoPagamento(String idEstado) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(DELETE)) {
-            pstmt.setString(1, idEstado);
-            pstmt.executeUpdate();
-        }
+    public void deleteEstadoPagamento(int id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        EstadoPagamento estadoPagamento = em.find(EstadoPagamento.class, id);
+        em.remove(estadoPagamento);
+        em.getTransaction().commit();
+        em.close();
     }
 }
-
-
-
-
-
 
 

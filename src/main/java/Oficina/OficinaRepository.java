@@ -1,84 +1,58 @@
 package Oficina;
 
-import projeto2.DatabaseConnection;
-
-import java.sql.*;
-import java.util.ArrayList;
+import jakarta.persistence .*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
 
 public class OficinaRepository {
 
-    private static final String SELECT_ALL = "SELECT * FROM \"Projecto1\".\"Oficina\"";
-    private static final String SELECT_BY_ID = "SELECT * FROM \"Projecto1\".\"Oficina\" WHERE \"idOficina\" = ?";
-    private static final String INSERT = "INSERT INTO \"Projecto1\".\"Oficina\" (nome, cpostal) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE \"Projecto1\".\"Oficina\" SET nome = ?, cpostal = ? WHERE \"idOficina\" = ?";
-    private static final String DELETE = "DELETE FROM \"Projecto1\".\"Oficina\" WHERE \"idOficina\"= ?";
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-    public List<Oficina> getAllOficinas() throws SQLException {
-        List<Oficina> oficinas = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SELECT_ALL)) {
-            while (rs.next()) {
-                Oficina oficina = new Oficina();
-                oficina.setNome(rs.getString("nome"));
-                oficina.setCpostal(rs.getString("cpostal"));
-                oficinas.add(oficina);
-            }
-        }
-        return oficinas;
+    public List<Oficina> getAllOficinas() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Oficina> cq = cb.createQuery(Oficina.class);
+        Root<Oficina> root = cq.from(Oficina.class);
+        cq.select(root);
+        TypedQuery<Oficina> query = em.createQuery(cq);
+        List<Oficina> orders = query.getResultList();
+        em.close();
+        return orders;
     }
 
-    public Oficina saveOficina(Oficina oficina) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, oficina.getNome());
-            pstmt.setString(2, oficina.getCpostal());
-            pstmt.executeUpdate();
+    public void createOficina(Oficina oficina) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(oficina);
+        em.getTransaction().commit();
+        em.close();
+    }
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    oficina.setIdOficina(rs.getInt(1));
-                }
-            }
-        }
+    public Oficina getOficinaById(int id) {
+        EntityManager em = emf.createEntityManager();
+        Oficina oficina = em.find(Oficina.class, id);
+        em.close();
         return oficina;
     }
 
-    public Oficina findOficinaById(int id) throws SQLException {
-        Oficina oficina = null;
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SELECT_BY_ID)) {
-            pstmt.setInt(1, id);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    oficina = new Oficina();
-                    oficina.setNome(rs.getString("nome"));
-                    oficina.setCpostal(rs.getString("cpostal"));
-                }
-            }
-        }
-        return oficina;
+    public void updateOficina(Oficina oficina) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(oficina);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    public Oficina updateOficina(Oficina oficina) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
-            pstmt.setString(1, oficina.getNome());
-            pstmt.setString(2, oficina.getCpostal());
-            pstmt.executeUpdate();
-        }
-        return oficina;
+    public void deleteOficina(int id) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Oficina oficina = em.find(Oficina.class, id);
+        em.remove(oficina);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    public void deleteOficina(int oficina) throws SQLException {
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(DELETE)) {
-            pstmt.setInt(1, oficina);
-            pstmt.executeUpdate();
-        }
-    }
 }
-
 

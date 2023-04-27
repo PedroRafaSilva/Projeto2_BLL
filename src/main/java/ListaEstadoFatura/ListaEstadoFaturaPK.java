@@ -17,6 +17,11 @@ public class ListaEstadoFaturaPK implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEstado;
 
+    public ListaEstadoFaturaPK(int idFatura, int idEstado) {
+        this.idFatura = idFatura;
+        this.idEstado = idEstado;
+    }
+
     public int getIdFatura() {
         return idFatura;
     }

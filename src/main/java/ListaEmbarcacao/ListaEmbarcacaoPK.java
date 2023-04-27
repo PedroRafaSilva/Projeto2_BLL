@@ -17,6 +17,11 @@ public class ListaEmbarcacaoPK implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEmbarcacao;
 
+    public ListaEmbarcacaoPK(int idFatura, int idEmbarcacao) {
+        this.idFatura = idFatura;
+        this.idEmbarcacao = idEmbarcacao;
+    }
+
     public int getIdFatura() {
         return idFatura;
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(ListaEmbarcacaoPK.class)
+@Table(name = "\"Projecto1\".\"ListaEmbarcacao\"")
 public class ListaEmbarcacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

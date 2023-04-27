@@ -3,6 +3,7 @@ package Extra;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "\"Projecto1\".\"Extra\"")
 public class Extra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

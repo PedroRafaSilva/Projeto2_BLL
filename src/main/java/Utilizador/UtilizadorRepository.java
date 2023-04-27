@@ -61,5 +61,12 @@ public class UtilizadorRepository {
         Long count = (Long) query.getSingleResult();
         return count > 0;
     }
+
+    public Utilizador findByName(String nome) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome = :nome");
+        query.setParameter("nome", nome);
+        return (Utilizador) query.getSingleResult();
+    }
 }
 

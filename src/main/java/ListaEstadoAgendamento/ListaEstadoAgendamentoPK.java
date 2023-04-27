@@ -17,6 +17,11 @@ public class ListaEstadoAgendamentoPK implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEstado;
 
+    public ListaEstadoAgendamentoPK(int idAgendamento, int idEstado) {
+        this.idAgendamento = idAgendamento;
+        this.idEstado = idEstado;
+    }
+
     public int getIdAgendamento() {
         return idAgendamento;
     }
