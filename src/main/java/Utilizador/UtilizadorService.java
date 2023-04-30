@@ -9,6 +9,18 @@ public class UtilizadorService {
         return utilizadorRepository.getAllUtilizadores();
     }
 
+    public List<Utilizador> getAllUtilizadoresOrderByName() {
+        return utilizadorRepository.getAllUtilizadoresOrderByName();
+    }
+
+    public List<Utilizador> getAllClientes() {
+        return utilizadorRepository.getAllClientes();
+    }
+
+    public List<Utilizador> getAllFuncionarios() {
+        return utilizadorRepository.getAllFuncionarios();
+    }
+
     public void createUtilizador(Utilizador utilizador) {
         utilizadorRepository.createUtilizador(utilizador);
     }
@@ -32,4 +44,5 @@ public class UtilizadorService {
     public Utilizador getUtilizadorByNome(String nome){
         return utilizadorRepository.findByName(nome);
     }
+
 }

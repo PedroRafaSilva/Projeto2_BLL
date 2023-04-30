@@ -22,6 +22,47 @@ public class UtilizadorRepository {
         return orders;
     }
 
+    public List<Utilizador> getAllUtilizadoresOrderByName() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Utilizador> root = cq.from(Utilizador.class);
+        cq.select(root);
+        cq.orderBy(cb.asc(root.get("nome")));
+        TypedQuery<Utilizador> query = em.createQuery(cq);
+        List<Utilizador> orders = query.getResultList();
+        em.close();
+        return orders;
+    }
+
+    public List<Utilizador> getAllClientes() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Utilizador> root = cq.from(Utilizador.class);
+        cq.select(root);
+        cq.where(cb.equal(root.get("idTipoUtilizador"), 3));
+        cq.orderBy(cb.asc(root.get("nome")));
+        TypedQuery<Utilizador> query = em.createQuery(cq);
+        List<Utilizador> orders = query.getResultList();
+        em.close();
+        return orders;
+    }
+
+    public List<Utilizador> getAllFuncionarios() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Utilizador> root = cq.from(Utilizador.class);
+        cq.select(root);
+        cq.where(cb.equal(root.get("idTipoUtilizador"), 2));
+        cq.orderBy(cb.asc(root.get("nome")));
+        TypedQuery<Utilizador> query = em.createQuery(cq);
+        List<Utilizador> orders = query.getResultList();
+        em.close();
+        return orders;
+    }
+
     public void createUtilizador(Utilizador utilizador) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
