@@ -109,5 +109,18 @@ public class UtilizadorRepository {
         query.setParameter("nome", nome);
         return (Utilizador) query.getSingleResult();
     }
+
+    public List<Utilizador> getClientesComPrefix(String prefix) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idTipoUtilizador = 3", Utilizador.class);
+        query.setParameter("prefix", prefix + "%");
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Utilizador> root = cq.from(Utilizador.class);
+        cq.select(root);
+        List<Utilizador> utilizadores = query.getResultList();
+        em.close();
+        return utilizadores;
+    }
 }
 

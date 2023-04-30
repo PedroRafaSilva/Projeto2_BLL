@@ -45,4 +45,5 @@ public class UtilizadorService {
         return utilizadorRepository.findByName(nome);
     }
 
+    public List<Utilizador> getClientesComPrefix(String prefix){return  utilizadorRepository.getClientesComPrefix(prefix);}
 }
