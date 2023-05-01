@@ -122,5 +122,18 @@ public class UtilizadorRepository {
         em.close();
         return utilizadores;
     }
+
+    public List<Utilizador> getFuncionarioComPrefix(String prefix) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idTipoUtilizador = 2", Utilizador.class);
+        query.setParameter("prefix", prefix + "%");
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Utilizador> root = cq.from(Utilizador.class);
+        cq.select(root);
+        List<Utilizador> utilizadores = query.getResultList();
+        em.close();
+        return utilizadores;
+    }
 }
 
