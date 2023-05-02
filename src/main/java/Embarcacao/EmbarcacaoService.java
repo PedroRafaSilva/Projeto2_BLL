@@ -25,5 +25,7 @@ public class EmbarcacaoService {
     public void deleteEmbarcacao(int id) {
         embarcacaoRepository.deleteEmbarcacao(id);
     }
+
+    public List<Embarcacao> getEmbarcacoescomPrefix(String prefix){return embarcacaoRepository.getEmbarcacoesComPrefix(prefix);}
 }
 

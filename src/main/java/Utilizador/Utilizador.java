@@ -1,6 +1,10 @@
 package Utilizador;
 
+import Embarcacao.Embarcacao;
 import jakarta.persistence.*;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Utilizador\"")
@@ -39,6 +43,17 @@ public class Utilizador {
     @Basic
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "utilizador", orphanRemoval = true)
+    private Set<Embarcacao> embarcacaos = new LinkedHashSet<>();
+
+    public Set<Embarcacao> getEmbarcacaos() {
+        return embarcacaos;
+    }
+
+    public void setEmbarcacaos(Set<Embarcacao> embarcacaos) {
+        this.embarcacaos = embarcacaos;
+    }
 
     public int getIdUtilizador() {
         return idUtilizador;

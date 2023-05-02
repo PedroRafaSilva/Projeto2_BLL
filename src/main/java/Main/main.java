@@ -2,6 +2,8 @@ package Main;
 
 import CodPostal.CodPostal;
 import CodPostal.CodPostalService;
+
+import Embarcacao.EmbarcacaoService;
 import TipoUtilizador.TipoUtilizador;
 import TipoUtilizador.TipoUtilizadorService;
 import Utilizador.*;
@@ -14,9 +16,6 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args){
-        CodPostalService codPostalService = new CodPostalService();
-        CodPostal codPostal = new CodPostal();
-        System.out.println(codPostal.getCpostal());
-        codPostalService.updateCodPostal(codPostal);
+
     }
 }

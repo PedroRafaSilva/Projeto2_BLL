@@ -1,5 +1,6 @@
 package Embarcacao;
 
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +22,18 @@ public class Embarcacao {
     @Basic
     @Column(name = "comprimento")
     private Integer comprimento;
+
+    @ManyToOne
+    @JoinColumn(name = "idutilizador")
+    private Utilizador utilizador;
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
 
     public int getIdEmbarcacao() {
         return idEmbarcacao;

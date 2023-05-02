@@ -25,5 +25,9 @@ public class OficinaService {
     public void deleteOficina(int id) {
         oficinaRepository.deleteOficina(id);
     }
+
+    public List<Oficina> getOficinasComPrefix(String prefix){
+        return oficinaRepository.getOficinasComPrefix(prefix);
+    }
 }
 
