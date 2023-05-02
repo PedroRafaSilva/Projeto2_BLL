@@ -1,5 +1,6 @@
 package Embarcacao;
 
+import Comprimento.Comprimento;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
@@ -19,13 +20,34 @@ public class Embarcacao {
     @Basic
     @Column(name = "idMarina")
     private Integer idMarina;
+
     @Basic
-    @Column(name = "comprimento")
-    private Integer comprimento;
+    @Column(name = "idComprimento")
+    private Integer idComprimento;
 
     @ManyToOne
     @JoinColumn(name = "idutilizador")
     private Utilizador utilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "idcomprimento")
+    private Comprimento comprimento;
+
+    public Comprimento getComprimento() {
+        return comprimento;
+    }
+
+    public void setComprimento(Comprimento comprimento) {
+        this.comprimento = comprimento;
+    }
+
+    public Integer getIdComprimento() {
+        return idComprimento;
+    }
+
+    public void setIdComprimento(Integer idComprimento) {
+        this.idComprimento = idComprimento;
+    }
 
     public Utilizador getUtilizador() {
         return utilizador;
@@ -65,14 +87,6 @@ public class Embarcacao {
 
     public void setIdMarina(Integer idMarina) {
         this.idMarina = idMarina;
-    }
-
-    public Integer getComprimento() {
-        return comprimento;
-    }
-
-    public void setComprimento(Integer comprimento) {
-        this.comprimento = comprimento;
     }
 
     @Override

@@ -16,6 +16,7 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args){
-
+        EmbarcacaoService embarcacaoService = new EmbarcacaoService();
+        System.out.println(embarcacaoService.getEmbarcacaoById(1).getComprimento().getDescricao());
     }
 }

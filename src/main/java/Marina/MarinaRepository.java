@@ -1,5 +1,6 @@
 package Marina;
 
+import Utilizador.Utilizador;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -66,6 +67,13 @@ public class MarinaRepository {
         em.remove(marina);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public Marina findMarinaByName(String nome) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT m FROM Marina m WHERE m.nome = :nome");
+        query.setParameter("nome", nome);
+        return (Marina) query.getSingleResult();
     }
 
 }

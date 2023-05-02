@@ -1,5 +1,6 @@
 package Comprimento;
 
+import Utilizador.Utilizador;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -16,6 +17,7 @@ public class ComprimentoRepository {
         CriteriaQuery<Comprimento> cq = cb.createQuery(Comprimento.class);
         Root<Comprimento> root = cq.from(Comprimento.class);
         cq.select(root);
+        cq.orderBy(cb.asc(root.get("descricao")));
         TypedQuery<Comprimento> query = em.createQuery(cq);
         List<Comprimento> orders = query.getResultList();
         em.close();
@@ -52,6 +54,13 @@ public class ComprimentoRepository {
         em.remove(comprimento);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public Comprimento findComprimentoByName(String nome) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT c FROM Comprimento c WHERE c.descricao = :nome");
+        query.setParameter("nome", nome);
+        return (Comprimento) query.getSingleResult();
     }
 
 }

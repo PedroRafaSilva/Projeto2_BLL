@@ -112,6 +112,13 @@ public class UtilizadorRepository {
         return (Utilizador) query.getSingleResult();
     }
 
+    public Utilizador findClienteByName(String nome) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome = :nome AND u.idTipoUtilizador = 3");
+        query.setParameter("nome", nome);
+        return (Utilizador) query.getSingleResult();
+    }
+
     public List<Utilizador> getClientesComPrefix(String prefix) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idTipoUtilizador = 3", Utilizador.class);
