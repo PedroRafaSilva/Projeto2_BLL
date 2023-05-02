@@ -27,7 +27,5 @@ public class MarinaService {
     }
 
     public List<Marina> getMarinasComPrefix(String prefix){return marinaRepository.getMarinasComPrefix(prefix);}
-
-    public Marina getMarinaByName(String name){return marinaRepository.findMarinaByName(name);}
 }
 

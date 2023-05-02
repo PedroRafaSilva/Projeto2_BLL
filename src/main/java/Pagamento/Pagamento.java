@@ -9,30 +9,30 @@ import java.sql.Date;
 public class Pagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idPagamento")
-    private int idPagamento;
+    @Column(name = "idpagamento")
+    private int idpagamento;
     @Basic
     @Column(name = "data")
     private Date data;
     @Basic
-    @Column(name = "valorPago")
-    private Float valorPago;
+    @Column(name = "valorpago")
+    private Float valorpago;
     @Basic
-    @Column(name = "tipoPagamento")
-    private String tipoPagamento;
+    @Column(name = "tipopagamento")
+    private String tipopagamento;
     @Basic
-    @Column(name = "idUtilizador")
-    private Integer idUtilizador;
+    @Column(name = "idutilizador")
+    private Integer idutilizador;
     @Basic
-    @Column(name = "idFatura")
-    private Integer idFatura;
+    @Column(name = "idfatura")
+    private Integer idfatura;
 
-    public int getIdPagamento() {
-        return idPagamento;
+    public int getIdpagamento() {
+        return idpagamento;
     }
 
-    public void setIdPagamento(int idPagamento) {
-        this.idPagamento = idPagamento;
+    public void setIdpagamento(int idpagamento) {
+        this.idpagamento = idpagamento;
     }
 
     public Date getData() {
@@ -43,36 +43,36 @@ public class Pagamento {
         this.data = data;
     }
 
-    public Float getValorPago() {
-        return valorPago;
+    public Float getValorpago() {
+        return valorpago;
     }
 
-    public void setValorPago(Float valorPago) {
-        this.valorPago = valorPago;
+    public void setValorpago(Float valorpago) {
+        this.valorpago = valorpago;
     }
 
-    public String getTipoPagamento() {
-        return tipoPagamento;
+    public String getTipopagamento() {
+        return tipopagamento;
     }
 
-    public void setTipoPagamento(String tipoPagamento) {
-        this.tipoPagamento = tipoPagamento;
+    public void setTipopagamento(String tipopagamento) {
+        this.tipopagamento = tipopagamento;
     }
 
-    public Integer getIdUtilizador() {
-        return idUtilizador;
+    public Integer getIdutilizador() {
+        return idutilizador;
     }
 
-    public void setIdUtilizador(Integer idUtilizador) {
-        this.idUtilizador = idUtilizador;
+    public void setIdutilizador(Integer idutilizador) {
+        this.idutilizador = idutilizador;
     }
 
-    public Integer getIdFatura() {
-        return idFatura;
+    public Integer getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(Integer idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(Integer idfatura) {
+        this.idfatura = idfatura;
     }
 
     @Override
@@ -82,26 +82,26 @@ public class Pagamento {
 
         Pagamento pagamento = (Pagamento) o;
 
-        if (idPagamento != pagamento.idPagamento) return false;
+        if (idpagamento != pagamento.idpagamento) return false;
         if (data != null ? !data.equals(pagamento.data) : pagamento.data != null) return false;
-        if (valorPago != null ? !valorPago.equals(pagamento.valorPago) : pagamento.valorPago != null) return false;
-        if (tipoPagamento != null ? !tipoPagamento.equals(pagamento.tipoPagamento) : pagamento.tipoPagamento != null)
+        if (valorpago != null ? !valorpago.equals(pagamento.valorpago) : pagamento.valorpago != null) return false;
+        if (tipopagamento != null ? !tipopagamento.equals(pagamento.tipopagamento) : pagamento.tipopagamento != null)
             return false;
-        if (idUtilizador != null ? !idUtilizador.equals(pagamento.idUtilizador) : pagamento.idUtilizador != null)
+        if (idutilizador != null ? !idutilizador.equals(pagamento.idutilizador) : pagamento.idutilizador != null)
             return false;
-        if (idFatura != null ? !idFatura.equals(pagamento.idFatura) : pagamento.idFatura != null) return false;
+        if (idfatura != null ? !idfatura.equals(pagamento.idfatura) : pagamento.idfatura != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idPagamento;
+        int result = idpagamento;
         result = 31 * result + (data != null ? data.hashCode() : 0);
-        result = 31 * result + (valorPago != null ? valorPago.hashCode() : 0);
-        result = 31 * result + (tipoPagamento != null ? tipoPagamento.hashCode() : 0);
-        result = 31 * result + (idUtilizador != null ? idUtilizador.hashCode() : 0);
-        result = 31 * result + (idFatura != null ? idFatura.hashCode() : 0);
+        result = 31 * result + (valorpago != null ? valorpago.hashCode() : 0);
+        result = 31 * result + (tipopagamento != null ? tipopagamento.hashCode() : 0);
+        result = 31 * result + (idutilizador != null ? idutilizador.hashCode() : 0);
+        result = 31 * result + (idfatura != null ? idfatura.hashCode() : 0);
         return result;
     }
 }

@@ -8,34 +8,34 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 
 public class ListaEstadoAgendamentoPK implements Serializable {
-    @Column(name = "idAgendamento")
+    @Column(name = "idagendamento")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAgendamento;
-    @Column(name = "idEstado")
+    private int idagendamento;
+    @Column(name = "idestado")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEstado;
+    private int idestado;
 
-    public ListaEstadoAgendamentoPK(int idAgendamento, int idEstado) {
-        this.idAgendamento = idAgendamento;
-        this.idEstado = idEstado;
+    public ListaEstadoAgendamentoPK(int idagendamento, int idestado) {
+        this.idagendamento = idagendamento;
+        this.idestado = idestado;
     }
 
-    public int getIdAgendamento() {
-        return idAgendamento;
+    public int getIdagendamento() {
+        return idagendamento;
     }
 
-    public void setIdAgendamento(int idAgendamento) {
-        this.idAgendamento = idAgendamento;
+    public void setIdagendamento(int idagendamento) {
+        this.idagendamento = idagendamento;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public int getIdestado() {
+        return idestado;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
     }
 
     @Override
@@ -45,16 +45,16 @@ public class ListaEstadoAgendamentoPK implements Serializable {
 
         ListaEstadoAgendamentoPK that = (ListaEstadoAgendamentoPK) o;
 
-        if (idAgendamento != that.idAgendamento) return false;
-        if (idEstado != that.idEstado) return false;
+        if (idagendamento != that.idagendamento) return false;
+        if (idestado != that.idestado) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idAgendamento;
-        result = 31 * result + idEstado;
+        int result = idagendamento;
+        result = 31 * result + idestado;
         return result;
     }
 }

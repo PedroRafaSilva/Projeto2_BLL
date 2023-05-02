@@ -8,41 +8,41 @@ import jakarta.persistence.*;
 public class AgendamentoExtra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idAgendamento")
-    private int idAgendamento;
+    @Column(name = "idagendamento")
+    private int idagendamento;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idExtra")
-    private int idExtra;
+    @Column(name = "idextra")
+    private int idextra;
     @Basic
-    @Column(name = "valorExtra")
-    private Float valorExtra;
+    @Column(name = "valorextra")
+    private Float valorextra;
     @Basic
     @Column(name = "qtd")
     private Integer qtd;
 
-    public int getIdAgendamento() {
-        return idAgendamento;
+    public int getIdagendamento() {
+        return idagendamento;
     }
 
-    public void setIdAgendamento(int idAgendamento) {
-        this.idAgendamento = idAgendamento;
+    public void setIdagendamento(int idagendamento) {
+        this.idagendamento = idagendamento;
     }
 
-    public int getIdExtra() {
-        return idExtra;
+    public int getIdextra() {
+        return idextra;
     }
 
-    public void setIdExtra(int idExtra) {
-        this.idExtra = idExtra;
+    public void setIdextra(int idextra) {
+        this.idextra = idextra;
     }
 
-    public Float getValorExtra() {
-        return valorExtra;
+    public Float getValorextra() {
+        return valorextra;
     }
 
-    public void setValorExtra(Float valorExtra) {
-        this.valorExtra = valorExtra;
+    public void setValorextra(Float valorextra) {
+        this.valorextra = valorextra;
     }
 
     public Integer getQtd() {
@@ -60,9 +60,9 @@ public class AgendamentoExtra {
 
         AgendamentoExtra that = (AgendamentoExtra) o;
 
-        if (idAgendamento != that.idAgendamento) return false;
-        if (idExtra != that.idExtra) return false;
-        if (valorExtra != null ? !valorExtra.equals(that.valorExtra) : that.valorExtra != null) return false;
+        if (idagendamento != that.idagendamento) return false;
+        if (idextra != that.idextra) return false;
+        if (valorextra != null ? !valorextra.equals(that.valorextra) : that.valorextra != null) return false;
         if (qtd != null ? !qtd.equals(that.qtd) : that.qtd != null) return false;
 
         return true;
@@ -70,9 +70,9 @@ public class AgendamentoExtra {
 
     @Override
     public int hashCode() {
-        int result = idAgendamento;
-        result = 31 * result + idExtra;
-        result = 31 * result + (valorExtra != null ? valorExtra.hashCode() : 0);
+        int result = idagendamento;
+        result = 31 * result + idextra;
+        result = 31 * result + (valorextra != null ? valorextra.hashCode() : 0);
         result = 31 * result + (qtd != null ? qtd.hashCode() : 0);
         return result;
     }

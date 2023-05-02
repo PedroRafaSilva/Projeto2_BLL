@@ -9,8 +9,8 @@ import java.sql.Date;
 public class PedidoManutencao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idPedido")
-    private int idPedido;
+    @Column(name = "idpedido")
+    private int idpedido;
     @Basic
     @Column(name = "data")
     private Date data;
@@ -21,24 +21,24 @@ public class PedidoManutencao {
     @Column(name = "descricao")
     private String descricao;
     @Basic
-    @Column(name = "idEmbarcacao")
-    private Integer idEmbarcacao;
+    @Column(name = "idembarcacao")
+    private Integer idembarcacao;
     @Basic
-    @Column(name = "idOficina")
-    private Integer idOficina;
+    @Column(name = "idoficina")
+    private Integer idoficina;
     @Basic
-    @Column(name = "idUtilizador")
-    private Integer idUtilizador;
+    @Column(name = "idutilizador")
+    private Integer idutilizador;
     @Basic
-    @Column(name = "idFatura")
-    private Integer idFatura;
+    @Column(name = "idfatura")
+    private Integer idfatura;
 
-    public int getIdPedido() {
-        return idPedido;
+    public int getIdpedido() {
+        return idpedido;
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public void setIdpedido(int idpedido) {
+        this.idpedido = idpedido;
     }
 
     public Date getData() {
@@ -65,36 +65,36 @@ public class PedidoManutencao {
         this.descricao = descricao;
     }
 
-    public Integer getIdEmbarcacao() {
-        return idEmbarcacao;
+    public Integer getIdembarcacao() {
+        return idembarcacao;
     }
 
-    public void setIdEmbarcacao(Integer idEmbarcacao) {
-        this.idEmbarcacao = idEmbarcacao;
+    public void setIdembarcacao(Integer idembarcacao) {
+        this.idembarcacao = idembarcacao;
     }
 
-    public Integer getIdOficina() {
-        return idOficina;
+    public Integer getIdoficina() {
+        return idoficina;
     }
 
-    public void setIdOficina(Integer idOficina) {
-        this.idOficina = idOficina;
+    public void setIdoficina(Integer idoficina) {
+        this.idoficina = idoficina;
     }
 
-    public Integer getIdUtilizador() {
-        return idUtilizador;
+    public Integer getIdutilizador() {
+        return idutilizador;
     }
 
-    public void setIdUtilizador(Integer idUtilizador) {
-        this.idUtilizador = idUtilizador;
+    public void setIdutilizador(Integer idutilizador) {
+        this.idutilizador = idutilizador;
     }
 
-    public Integer getIdFatura() {
-        return idFatura;
+    public Integer getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(Integer idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(Integer idfatura) {
+        this.idfatura = idfatura;
     }
 
     @Override
@@ -104,28 +104,28 @@ public class PedidoManutencao {
 
         PedidoManutencao that = (PedidoManutencao) o;
 
-        if (idPedido != that.idPedido) return false;
+        if (idpedido != that.idpedido) return false;
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
         if (valor != null ? !valor.equals(that.valor) : that.valor != null) return false;
         if (descricao != null ? !descricao.equals(that.descricao) : that.descricao != null) return false;
-        if (idEmbarcacao != null ? !idEmbarcacao.equals(that.idEmbarcacao) : that.idEmbarcacao != null) return false;
-        if (idOficina != null ? !idOficina.equals(that.idOficina) : that.idOficina != null) return false;
-        if (idUtilizador != null ? !idUtilizador.equals(that.idUtilizador) : that.idUtilizador != null) return false;
-        if (idFatura != null ? !idFatura.equals(that.idFatura) : that.idFatura != null) return false;
+        if (idembarcacao != null ? !idembarcacao.equals(that.idembarcacao) : that.idembarcacao != null) return false;
+        if (idoficina != null ? !idoficina.equals(that.idoficina) : that.idoficina != null) return false;
+        if (idutilizador != null ? !idutilizador.equals(that.idutilizador) : that.idutilizador != null) return false;
+        if (idfatura != null ? !idfatura.equals(that.idfatura) : that.idfatura != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idPedido;
+        int result = idpedido;
         result = 31 * result + (data != null ? data.hashCode() : 0);
         result = 31 * result + (valor != null ? valor.hashCode() : 0);
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
-        result = 31 * result + (idEmbarcacao != null ? idEmbarcacao.hashCode() : 0);
-        result = 31 * result + (idOficina != null ? idOficina.hashCode() : 0);
-        result = 31 * result + (idUtilizador != null ? idUtilizador.hashCode() : 0);
-        result = 31 * result + (idFatura != null ? idFatura.hashCode() : 0);
+        result = 31 * result + (idembarcacao != null ? idembarcacao.hashCode() : 0);
+        result = 31 * result + (idoficina != null ? idoficina.hashCode() : 0);
+        result = 31 * result + (idutilizador != null ? idutilizador.hashCode() : 0);
+        result = 31 * result + (idfatura != null ? idfatura.hashCode() : 0);
         return result;
     }
 }

@@ -7,21 +7,21 @@ import jakarta.persistence.*;
 public class Extra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idExtra")
-    private int idExtra;
+    @Column(name = "idextra")
+    private int idextra;
     @Basic
     @Column(name = "descricao")
     private String descricao;
     @Basic
-    @Column(name = "valorAtualExtra")
-    private Float valorAtualExtra;
+    @Column(name = "valoratualextra")
+    private Float valoratualextra;
 
-    public int getIdExtra() {
-        return idExtra;
+    public int getIdextra() {
+        return idextra;
     }
 
-    public void setIdExtra(int idExtra) {
-        this.idExtra = idExtra;
+    public void setIdextra(int idextra) {
+        this.idextra = idextra;
     }
 
     public String getDescricao() {
@@ -32,12 +32,12 @@ public class Extra {
         this.descricao = descricao;
     }
 
-    public Float getValorAtualExtra() {
-        return valorAtualExtra;
+    public Float getValoratualextra() {
+        return valoratualextra;
     }
 
-    public void setValorAtualExtra(Float valorAtualExtra) {
-        this.valorAtualExtra = valorAtualExtra;
+    public void setValoratualextra(Float valoratualextra) {
+        this.valoratualextra = valoratualextra;
     }
 
     @Override
@@ -47,9 +47,9 @@ public class Extra {
 
         Extra extra = (Extra) o;
 
-        if (idExtra != extra.idExtra) return false;
+        if (idextra != extra.idextra) return false;
         if (descricao != null ? !descricao.equals(extra.descricao) : extra.descricao != null) return false;
-        if (valorAtualExtra != null ? !valorAtualExtra.equals(extra.valorAtualExtra) : extra.valorAtualExtra != null)
+        if (valoratualextra != null ? !valoratualextra.equals(extra.valoratualextra) : extra.valoratualextra != null)
             return false;
 
         return true;
@@ -57,9 +57,9 @@ public class Extra {
 
     @Override
     public int hashCode() {
-        int result = idExtra;
+        int result = idextra;
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
-        result = 31 * result + (valorAtualExtra != null ? valorAtualExtra.hashCode() : 0);
+        result = 31 * result + (valoratualextra != null ? valoratualextra.hashCode() : 0);
         return result;
     }
 }
