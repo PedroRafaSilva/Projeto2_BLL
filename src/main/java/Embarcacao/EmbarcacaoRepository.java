@@ -16,6 +16,7 @@ public class EmbarcacaoRepository {
         CriteriaQuery<Embarcacao> cq = cb.createQuery(Embarcacao.class);
         Root<Embarcacao> root = cq.from(Embarcacao.class);
         cq.select(root);
+        cq.orderBy(cb.asc(root.get("nome")));
         TypedQuery<Embarcacao> query = em.createQuery(cq);
         List<Embarcacao> orders = query.getResultList();
         em.close();

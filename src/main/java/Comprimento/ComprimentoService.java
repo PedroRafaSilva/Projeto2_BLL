@@ -1,5 +1,7 @@
 package Comprimento;
 
+import Marina.Marina;
+
 import java.util.List;
 
 public class ComprimentoService {
@@ -25,5 +27,8 @@ public class ComprimentoService {
     public void deleteComprimento(String id) {
         comprimentoRepository.deleteComprimento(id);
     }
+
+    public Comprimento getComprimentoByName(String name){return comprimentoRepository.
+            findComprimentoByName(name);}
 }
 
