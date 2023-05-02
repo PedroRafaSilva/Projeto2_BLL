@@ -1,6 +1,7 @@
 package Embarcacao;
 
 import Comprimento.Comprimento;
+import Marina.Marina;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
@@ -22,31 +23,55 @@ public class Embarcacao {
     private Integer idMarina;
 
     @Basic
-    @Column(name = "idComprimento")
-    private Integer idComprimento;
+    @Column(name = "comprimento")
+    private Integer comprimento;
 
     @ManyToOne
     @JoinColumn(name = "idutilizador")
     private Utilizador utilizador;
 
     @ManyToOne
-    @JoinColumn(name = "idcomprimento")
-    private Comprimento comprimento;
+    @JoinColumn(name = "comprimento", updatable = false, insertable = false)
+    private Comprimento descComprimento;
 
-    public Comprimento getComprimento() {
+    @ManyToOne
+    @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
+    private Utilizador idutilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "idmarina", insertable = false, updatable = false)
+    private Marina idmarina;
+
+    public Marina getIdmarina() {
+        return idmarina;
+    }
+
+    public void setIdmarina(Marina idmarina) {
+        this.idmarina = idmarina;
+    }
+
+    public Utilizador getIdutilizador() {
+        return idutilizador;
+    }
+
+    public void setIdutilizador(Utilizador idutilizador) {
+        this.idutilizador = idutilizador;
+    }
+
+    public Comprimento getDescComprimento() {
+        return descComprimento;
+    }
+
+    public void setDescComprimento(Comprimento descomprimento) {
+        this.descComprimento = descomprimento;
+    }
+
+    public Integer getComprimento() {
         return comprimento;
     }
 
-    public void setComprimento(Comprimento comprimento) {
+    public void setComprimento(Integer idComprimento) {
         this.comprimento = comprimento;
-    }
-
-    public Integer getIdComprimento() {
-        return idComprimento;
-    }
-
-    public void setIdComprimento(Integer idComprimento) {
-        this.idComprimento = idComprimento;
     }
 
     public Utilizador getUtilizador() {
