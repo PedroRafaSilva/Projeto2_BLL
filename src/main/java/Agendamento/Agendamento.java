@@ -1,5 +1,6 @@
 package Agendamento;
 
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -25,14 +26,26 @@ public class Agendamento {
     @Column(name = "idfatura")
     private Integer idfatura;
     @Basic
-    @Column(name = "hora")
-    private Time hora;
+    @Column(name = "horainicio")
+    private Time horainicio;
     @Basic
-    @Column(name = "duracao")
-    private Object duracao;
+    @Column(name = "horafim")
+    private Time horafim;
     @Basic
     @Column(name = "idutilizador")
     private Integer idutilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
+    private Utilizador utilizador;
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
 
     public int getIdagendamento() {
         return idagendamento;
@@ -74,20 +87,20 @@ public class Agendamento {
         this.idfatura = idfatura;
     }
 
-    public Time getHora() {
-        return hora;
+    public Time getHorainicio() {
+        return horainicio;
     }
 
-    public void setHora(Time hora) {
-        this.hora = hora;
+    public void setHorainicio(Time hora) {
+        this.horainicio = hora;
     }
 
-    public Object getDuracao() {
-        return duracao;
+    public Time getHoraFim() {
+        return horafim;
     }
 
-    public void setDuracao(Object duracao) {
-        this.duracao = duracao;
+    public void setHorafim(Time horafim) {
+        this.horafim = horafim;
     }
 
     public Integer getIdutilizador() {
@@ -110,8 +123,8 @@ public class Agendamento {
         if (valorextras != null ? !valorextras.equals(that.valorextras) : that.valorextras != null) return false;
         if (idembarcacao != null ? !idembarcacao.equals(that.idembarcacao) : that.idembarcacao != null) return false;
         if (idfatura != null ? !idfatura.equals(that.idfatura) : that.idfatura != null) return false;
-        if (hora != null ? !hora.equals(that.hora) : that.hora != null) return false;
-        if (duracao != null ? !duracao.equals(that.duracao) : that.duracao != null) return false;
+        if (horainicio != null ? !horainicio.equals(that.horainicio) : that.horainicio != null) return false;
+        if (horafim != null ? !horafim.equals(that.horafim) : that.horafim != null) return false;
         if (idutilizador != null ? !idutilizador.equals(that.idutilizador) : that.idutilizador != null) return false;
 
         return true;
@@ -124,8 +137,8 @@ public class Agendamento {
         result = 31 * result + (valorextras != null ? valorextras.hashCode() : 0);
         result = 31 * result + (idembarcacao != null ? idembarcacao.hashCode() : 0);
         result = 31 * result + (idfatura != null ? idfatura.hashCode() : 0);
-        result = 31 * result + (hora != null ? hora.hashCode() : 0);
-        result = 31 * result + (duracao != null ? duracao.hashCode() : 0);
+        result = 31 * result + (horainicio != null ? horainicio.hashCode() : 0);
+        result = 31 * result + (horafim != null ? horafim.hashCode() : 0);
         result = 31 * result + (idutilizador != null ? idutilizador.hashCode() : 0);
         return result;
     }

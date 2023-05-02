@@ -1,5 +1,6 @@
 package Main;
 
+import Agendamento.AgendamentoService;
 import CodPostal.CodPostal;
 import CodPostal.CodPostalService;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args){
-        EmbarcacaoService embarcacaoService = new EmbarcacaoService();
-        System.out.println(embarcacaoService.getEmbarcacaoById(2).getDescComprimento().getDescricao());
+       AgendamentoService agendamentoService = new AgendamentoService();
+       agendamentoService.getAgendamentoById(10).getUtilizador().getNome();
     }
 }

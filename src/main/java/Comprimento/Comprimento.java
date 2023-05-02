@@ -18,8 +18,7 @@ public class Comprimento {
     @Basic
     @Column(name = "valorcomprimento")
     private Float valorcomprimento;
-    @OneToMany(mappedBy = "comprimentoByComprimento")
-    private Collection<Embarcacao> embarcacaosByComprimento;
+
 
     public int getComprimento() {
         return comprimento;
@@ -68,11 +67,4 @@ public class Comprimento {
         return result;
     }
 
-    public Collection<Embarcacao> getEmbarcacaosByComprimento() {
-        return embarcacaosByComprimento;
-    }
-
-    public void setEmbarcacaosByComprimento(Collection<Embarcacao> embarcacaosByComprimento) {
-        this.embarcacaosByComprimento = embarcacaosByComprimento;
-    }
 }

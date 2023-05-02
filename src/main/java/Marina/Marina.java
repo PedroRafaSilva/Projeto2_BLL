@@ -16,9 +16,6 @@ public class Marina {
     @Basic
     @Column(name = "cpostal")
     private String cpostal;
-    @ManyToOne
-    @JoinColumn(name = "cpostal", referencedColumnName = "cpostal")
-    private CodPostal codPostalByCpostal;
 
     public int getIdmarina() {
         return idmarina;
@@ -64,13 +61,5 @@ public class Marina {
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         result = 31 * result + (cpostal != null ? cpostal.hashCode() : 0);
         return result;
-    }
-
-    public CodPostal getCodPostalByCpostal() {
-        return codPostalByCpostal;
-    }
-
-    public void setCodPostalByCpostal(CodPostal codPostalByCpostal) {
-        this.codPostalByCpostal = codPostalByCpostal;
     }
 }

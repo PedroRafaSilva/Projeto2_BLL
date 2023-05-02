@@ -38,10 +38,6 @@ public class Utilizador {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "cpostal", referencedColumnName = "cpostal")
-    private CodPostal codPostalByCpostal;
-
     public int getIdutilizador() {
         return idutilizador;
     }
@@ -158,13 +154,5 @@ public class Utilizador {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
-    }
-
-    public CodPostal getCodPostalByCpostal() {
-        return codPostalByCpostal;
-    }
-
-    public void setCodPostalByCpostal(CodPostal codPostalByCpostal) {
-        this.codPostalByCpostal = codPostalByCpostal;
     }
 }
