@@ -25,5 +25,9 @@ public class AgendamentoService {
     public void deleteAgendamento(int id) {
         agendamentoRepository.deleteAgendamento(id);
     }
+
+    public List<Agendamento> getAgendamentosByDate(int dia, int mes, int ano) {
+        return agendamentoRepository.findAllAgendamentosByDate(dia, mes, ano);
+    }
 }
 

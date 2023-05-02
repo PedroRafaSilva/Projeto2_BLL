@@ -1,5 +1,6 @@
 package Agendamento;
 
+import Embarcacao.Embarcacao;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
@@ -38,6 +39,18 @@ public class Agendamento {
     @ManyToOne
     @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
     private Utilizador utilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "idembarcacao", updatable = false, insertable = false)
+    private Embarcacao embarcacao;
+
+    public Embarcacao getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(Embarcacao embarcacao) {
+        this.embarcacao = embarcacao;
+    }
 
     public Utilizador getUtilizador() {
         return utilizador;

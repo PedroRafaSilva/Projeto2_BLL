@@ -38,6 +38,18 @@ public class Utilizador {
     @Column(name = "password")
     private String password;
 
+    @Basic
+    @Column(name = "cpostal")
+    private String cPostal;
+
+    public String getcPostal() {
+        return cPostal;
+    }
+
+    public void setcPostal(String cPostal) {
+        this.cPostal = cPostal;
+    }
+
     public int getIdutilizador() {
         return idutilizador;
     }

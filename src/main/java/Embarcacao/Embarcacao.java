@@ -40,14 +40,14 @@ public class Embarcacao {
 
     @ManyToOne
     @JoinColumn(name = "idmarina", insertable = false, updatable = false)
-    private Marina idmarina;
+    private Marina marina;
 
-    public Marina getIdmarina() {
-        return idmarina;
+    public Marina getmarina() {
+        return marina;
     }
 
-    public void setIdmarina(Marina idmarina) {
-        this.idmarina = idmarina;
+    public void setmarina(Marina idmarina) {
+        this.marina = idmarina;
     }
 
     public Utilizador getIdutilizador() {
