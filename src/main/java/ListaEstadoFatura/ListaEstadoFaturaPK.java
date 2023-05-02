@@ -8,34 +8,34 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 
 public class ListaEstadoFaturaPK implements Serializable {
-    @Column(name = "idFatura")
+    @Column(name = "idfatura")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFatura;
-    @Column(name = "idEstado")
+    private int idfatura;
+    @Column(name = "idestado")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEstado;
+    private int idestado;
 
-    public ListaEstadoFaturaPK(int idFatura, int idEstado) {
-        this.idFatura = idFatura;
-        this.idEstado = idEstado;
+    public ListaEstadoFaturaPK(int idfatura, int idestado) {
+        this.idfatura = idfatura;
+        this.idestado = idestado;
     }
 
-    public int getIdFatura() {
-        return idFatura;
+    public int getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(int idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(int idfatura) {
+        this.idfatura = idfatura;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public int getIdestado() {
+        return idestado;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
     }
 
     @Override
@@ -45,16 +45,16 @@ public class ListaEstadoFaturaPK implements Serializable {
 
         ListaEstadoFaturaPK that = (ListaEstadoFaturaPK) o;
 
-        if (idFatura != that.idFatura) return false;
-        if (idEstado != that.idEstado) return false;
+        if (idfatura != that.idfatura) return false;
+        if (idestado != that.idestado) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idFatura;
-        result = 31 * result + idEstado;
+        int result = idfatura;
+        result = 31 * result + idestado;
         return result;
     }
 }

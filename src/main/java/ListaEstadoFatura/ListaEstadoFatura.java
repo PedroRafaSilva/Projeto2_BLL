@@ -10,30 +10,30 @@ import java.sql.Date;
 public class ListaEstadoFatura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idFatura")
-    private int idFatura;
+    @Column(name = "idfatura")
+    private int idfatura;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idEstado")
-    private int idEstado;
+    @Column(name = "idestado")
+    private int idestado;
     @Basic
     @Column(name = "data")
     private Date data;
 
-    public int getIdFatura() {
-        return idFatura;
+    public int getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(int idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(int idfatura) {
+        this.idfatura = idfatura;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public int getIdestado() {
+        return idestado;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
     }
 
     public Date getData() {
@@ -51,8 +51,8 @@ public class ListaEstadoFatura {
 
         ListaEstadoFatura that = (ListaEstadoFatura) o;
 
-        if (idFatura != that.idFatura) return false;
-        if (idEstado != that.idEstado) return false;
+        if (idfatura != that.idfatura) return false;
+        if (idestado != that.idestado) return false;
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
 
         return true;
@@ -60,8 +60,8 @@ public class ListaEstadoFatura {
 
     @Override
     public int hashCode() {
-        int result = idFatura;
-        result = 31 * result + idEstado;
+        int result = idfatura;
+        result = 31 * result + idestado;
         result = 31 * result + (data != null ? data.hashCode() : 0);
         return result;
     }

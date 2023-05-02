@@ -22,6 +22,19 @@ public class OficinaRepository {
         return orders;
     }
 
+    public List<Oficina> getOficinasComPrefix(String prefix) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Oficina> query = em.createQuery("SELECT o FROM Oficina o WHERE o.nome LIKE :prefix", Oficina.class);
+        query.setParameter("prefix", prefix + "%");
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Oficina> cq = cb.createQuery(Oficina.class);
+        Root<Oficina> root = cq.from(Oficina.class);
+        cq.select(root);
+        List<Oficina> oficinas = query.getResultList();
+        em.close();
+        return oficinas;
+    }
+
     public void createOficina(Oficina oficina) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

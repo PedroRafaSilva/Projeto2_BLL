@@ -1,5 +1,6 @@
 package Embarcacao;
 
+import Comprimento.Comprimento;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,27 +8,27 @@ import jakarta.persistence.*;
 public class Embarcacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idEmbarcacao")
-    private int idEmbarcacao;
+    @Column(name = "idembarcacao")
+    private int idembarcacao;
     @Basic
     @Column(name = "nome")
     private String nome;
     @Basic
-    @Column(name = "idUtilizador")
-    private Integer idUtilizador;
+    @Column(name = "idutilizador")
+    private Integer idutilizador;
     @Basic
-    @Column(name = "idMarina")
-    private Integer idMarina;
-    @Basic
-    @Column(name = "comprimento")
-    private Integer comprimento;
+    @Column(name = "idmarina")
+    private Integer idmarina;
+    @ManyToOne
+    @JoinColumn(name = "comprimento", referencedColumnName = "comprimento")
+    private Comprimento comprimentoByComprimento;
 
-    public int getIdEmbarcacao() {
-        return idEmbarcacao;
+    public int getIdembarcacao() {
+        return idembarcacao;
     }
 
-    public void setIdEmbarcacao(int idEmbarcacao) {
-        this.idEmbarcacao = idEmbarcacao;
+    public void setIdembarcacao(int idembarcacao) {
+        this.idembarcacao = idembarcacao;
     }
 
     public String getNome() {
@@ -38,53 +39,39 @@ public class Embarcacao {
         this.nome = nome;
     }
 
-    public Integer getIdUtilizador() {
-        return idUtilizador;
+    public Integer getIdutilizador() {
+        return idutilizador;
     }
 
-    public void setIdUtilizador(Integer idUtilizador) {
-        this.idUtilizador = idUtilizador;
+    public void setIdutilizador(Integer idutilizador) {
+        this.idutilizador = idutilizador;
     }
 
-    public Integer getIdMarina() {
-        return idMarina;
+    public Integer getIdmarina() {
+        return idmarina;
     }
 
-    public void setIdMarina(Integer idMarina) {
-        this.idMarina = idMarina;
+    public void setIdmarina(Integer idmarina) {
+        this.idmarina = idmarina;
     }
 
-    public Integer getComprimento() {
-        return comprimento;
-    }
 
-    public void setComprimento(Integer comprimento) {
-        this.comprimento = comprimento;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Embarcacao that = (Embarcacao) o;
-
-        if (idEmbarcacao != that.idEmbarcacao) return false;
-        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
-        if (idUtilizador != null ? !idUtilizador.equals(that.idUtilizador) : that.idUtilizador != null) return false;
-        if (idMarina != null ? !idMarina.equals(that.idMarina) : that.idMarina != null) return false;
-        if (comprimento != null ? !comprimento.equals(that.comprimento) : that.comprimento != null) return false;
-
-        return true;
-    }
 
     @Override
     public int hashCode() {
-        int result = idEmbarcacao;
+        int result = idembarcacao;
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
-        result = 31 * result + (idUtilizador != null ? idUtilizador.hashCode() : 0);
-        result = 31 * result + (idMarina != null ? idMarina.hashCode() : 0);
-        result = 31 * result + (comprimento != null ? comprimento.hashCode() : 0);
+        result = 31 * result + (idutilizador != null ? idutilizador.hashCode() : 0);
+        result = 31 * result + (idmarina != null ? idmarina.hashCode() : 0);
         return result;
+    }
+
+    public Comprimento getComprimentoByComprimento() {
+        return comprimentoByComprimento;
+    }
+
+    public void setComprimentoByComprimento(Comprimento comprimentoByComprimento) {
+        this.comprimentoByComprimento = comprimentoByComprimento;
     }
 }

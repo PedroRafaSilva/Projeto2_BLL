@@ -16,10 +16,24 @@ public class MarinaRepository {
         CriteriaQuery<Marina> cq = cb.createQuery(Marina.class);
         Root<Marina> root = cq.from(Marina.class);
         cq.select(root);
+        cq.orderBy(cb.asc(root.get("nome")));
         TypedQuery<Marina> query = em.createQuery(cq);
         List<Marina> orders = query.getResultList();
         em.close();
         return orders;
+    }
+
+    public List<Marina> getMarinasComPrefix(String prefix) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Marina> query = em.createQuery("SELECT m FROM Marina m WHERE m.nome LIKE :prefix", Marina.class);
+        query.setParameter("prefix", prefix + "%");
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Marina> cq = cb.createQuery(Marina.class);
+        Root<Marina> root = cq.from(Marina.class);
+        cq.select(root);
+        List<Marina> marinas = query.getResultList();
+        em.close();
+        return marinas;
     }
 
     public void createMarina(Marina marina) {

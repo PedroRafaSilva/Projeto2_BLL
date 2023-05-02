@@ -1,5 +1,6 @@
 package Oficina;
 
+import CodPostal.CodPostal;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,21 +8,24 @@ import jakarta.persistence.*;
 public class Oficina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idOficina")
-    private int idOficina;
+    @Column(name = "idoficina")
+    private int idoficina;
     @Basic
     @Column(name = "nome")
     private String nome;
     @Basic
     @Column(name = "cpostal")
     private String cpostal;
+    @ManyToOne
+    @JoinColumn(name = "cpostal", referencedColumnName = "cpostal")
+    private CodPostal codPostalByCpostal;
 
-    public int getIdOficina() {
-        return idOficina;
+    public int getIdoficina() {
+        return idoficina;
     }
 
-    public void setIdOficina(int idOficina) {
-        this.idOficina = idOficina;
+    public void setIdoficina(int idoficina) {
+        this.idoficina = idoficina;
     }
 
     public String getNome() {
@@ -47,7 +51,7 @@ public class Oficina {
 
         Oficina oficina = (Oficina) o;
 
-        if (idOficina != oficina.idOficina) return false;
+        if (idoficina != oficina.idoficina) return false;
         if (nome != null ? !nome.equals(oficina.nome) : oficina.nome != null) return false;
         if (cpostal != null ? !cpostal.equals(oficina.cpostal) : oficina.cpostal != null) return false;
 
@@ -56,9 +60,17 @@ public class Oficina {
 
     @Override
     public int hashCode() {
-        int result = idOficina;
+        int result = idoficina;
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         result = 31 * result + (cpostal != null ? cpostal.hashCode() : 0);
         return result;
+    }
+
+    public CodPostal getCodPostalByCpostal() {
+        return codPostalByCpostal;
+    }
+
+    public void setCodPostalByCpostal(CodPostal codPostalByCpostal) {
+        this.codPostalByCpostal = codPostalByCpostal;
     }
 }

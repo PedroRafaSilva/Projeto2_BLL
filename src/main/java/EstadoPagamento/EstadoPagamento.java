@@ -7,18 +7,18 @@ import jakarta.persistence.*;
 public class EstadoPagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idEstado")
-    private int idEstado;
+    @Column(name = "idestado")
+    private int idestado;
     @Basic
-    @Column(name = "Estado")
+    @Column(name = "estado")
     private String estado;
 
-    public int getIdEstado() {
-        return idEstado;
+    public int getIdestado() {
+        return idestado;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
     }
 
     public String getEstado() {
@@ -36,7 +36,7 @@ public class EstadoPagamento {
 
         EstadoPagamento that = (EstadoPagamento) o;
 
-        if (idEstado != that.idEstado) return false;
+        if (idestado != that.idestado) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
 
         return true;
@@ -44,7 +44,7 @@ public class EstadoPagamento {
 
     @Override
     public int hashCode() {
-        int result = idEstado;
+        int result = idestado;
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         return result;
     }

@@ -7,18 +7,18 @@ import jakarta.persistence.*;
 public class TipoUtilizador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idTipoUtilizador")
-    private int idTipoUtilizador;
+    @Column(name = "idtipoutilizador")
+    private int idtipoutilizador;
     @Basic
     @Column(name = "descricao")
     private String descricao;
 
-    public int getIdTipoUtilizador() {
-        return idTipoUtilizador;
+    public int getIdtipoutilizador() {
+        return idtipoutilizador;
     }
 
-    public void setIdTipoUtilizador(int idTipoUtilizador) {
-        this.idTipoUtilizador = idTipoUtilizador;
+    public void setIdtipoutilizador(int idtipoutilizador) {
+        this.idtipoutilizador = idtipoutilizador;
     }
 
     public String getDescricao() {
@@ -36,7 +36,7 @@ public class TipoUtilizador {
 
         TipoUtilizador that = (TipoUtilizador) o;
 
-        if (idTipoUtilizador != that.idTipoUtilizador) return false;
+        if (idtipoutilizador != that.idtipoutilizador) return false;
         if (descricao != null ? !descricao.equals(that.descricao) : that.descricao != null) return false;
 
         return true;
@@ -44,7 +44,7 @@ public class TipoUtilizador {
 
     @Override
     public int hashCode() {
-        int result = idTipoUtilizador;
+        int result = idtipoutilizador;
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
         return result;
     }

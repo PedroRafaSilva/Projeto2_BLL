@@ -1,8 +1,10 @@
 package Utilizador;
 
+import Embarcacao.Embarcacao;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
 
@@ -134,6 +136,16 @@ public class UtilizadorRepository {
         List<Utilizador> utilizadores = query.getResultList();
         em.close();
         return utilizadores;
+    }
+
+    public List<Utilizador> obterUtilizadoresComEmbarcacao() {
+        EntityManager em = emf.createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
+        Root<Embarcacao> embarcacao = cq.from(Embarcacao.class);
+        Join<Embarcacao, Utilizador> utilizador = embarcacao.join("idUtilizador");
+        cq.select(utilizador).distinct(true);
+        return em.createQuery(cq).getResultList();
     }
 }
 

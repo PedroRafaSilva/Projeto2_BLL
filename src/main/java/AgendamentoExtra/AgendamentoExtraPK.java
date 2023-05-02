@@ -8,34 +8,34 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 
 public class AgendamentoExtraPK implements Serializable {
-    @Column(name = "idAgendamento")
+    @Column(name = "idagendamento")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAgendamento;
-    @Column(name = "idExtra")
+    private int idagendamento;
+    @Column(name = "idextra")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idExtra;
+    private int idextra;
 
-    public AgendamentoExtraPK(int idAgendamento, int idExtra) {
-        this.idAgendamento = idAgendamento;
-        this.idExtra = idExtra;
+    public AgendamentoExtraPK(int idagendamento, int idextra) {
+        this.idagendamento = idagendamento;
+        this.idextra = idextra;
     }
 
-    public int getIdAgendamento() {
-        return idAgendamento;
+    public int getIdagendamento() {
+        return idagendamento;
     }
 
-    public void setIdAgendamento(int idAgendamento) {
-        this.idAgendamento = idAgendamento;
+    public void setIdagendamento(int idagendamento) {
+        this.idagendamento = idagendamento;
     }
 
-    public int getIdExtra() {
-        return idExtra;
+    public int getIdextra() {
+        return idextra;
     }
 
-    public void setIdExtra(int idExtra) {
-        this.idExtra = idExtra;
+    public void setIdextra(int idextra) {
+        this.idextra = idextra;
     }
 
     @Override
@@ -45,16 +45,16 @@ public class AgendamentoExtraPK implements Serializable {
 
         AgendamentoExtraPK that = (AgendamentoExtraPK) o;
 
-        if (idAgendamento != that.idAgendamento) return false;
-        if (idExtra != that.idExtra) return false;
+        if (idagendamento != that.idagendamento) return false;
+        if (idextra != that.idextra) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idAgendamento;
-        result = 31 * result + idExtra;
+        int result = idagendamento;
+        result = 31 * result + idextra;
         return result;
     }
 }

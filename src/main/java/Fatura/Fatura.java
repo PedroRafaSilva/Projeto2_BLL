@@ -9,47 +9,47 @@ import java.sql.Date;
 public class Fatura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idFatura")
-    private int idFatura;
+    @Column(name = "idfatura")
+    private int idfatura;
     @Basic
-    @Column(name = "dataCriacao")
-    private Date dataCriacao;
+    @Column(name = "datacriacao")
+    private Date datacriacao;
     @Basic
     @Column(name = "prazo")
     private Date prazo;
     @Basic
-    @Column(name = "valorEmbarcacoes")
-    private Float valorEmbarcacoes;
+    @Column(name = "valorembarcacoes")
+    private Float valorembarcacoes;
     @Basic
-    @Column(name = "valorAgendamento")
-    private Float valorAgendamento;
+    @Column(name = "valoragendamento")
+    private Float valoragendamento;
     @Basic
-    @Column(name = "valorManutencao")
-    private Float valorManutencao;
+    @Column(name = "valormanutencao")
+    private Float valormanutencao;
     @Basic
-    @Column(name = "valorTotal")
-    private Float valorTotal;
+    @Column(name = "valortotal")
+    private Float valortotal;
     @Basic
-    @Column(name = "idUtilizador")
-    private Integer idUtilizador;
+    @Column(name = "idutilizador")
+    private Integer idutilizador;
     @Basic
-    @Column(name = "numFiscal")
-    private Integer numFiscal;
+    @Column(name = "numfiscal")
+    private Integer numfiscal;
 
-    public int getIdFatura() {
-        return idFatura;
+    public int getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(int idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(int idfatura) {
+        this.idfatura = idfatura;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
+    public Date getDatacriacao() {
+        return datacriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDatacriacao(Date datacriacao) {
+        this.datacriacao = datacriacao;
     }
 
     public Date getPrazo() {
@@ -60,52 +60,52 @@ public class Fatura {
         this.prazo = prazo;
     }
 
-    public Float getValorEmbarcacoes() {
-        return valorEmbarcacoes;
+    public Float getValorembarcacoes() {
+        return valorembarcacoes;
     }
 
-    public void setValorEmbarcacoes(Float valorEmbarcacoes) {
-        this.valorEmbarcacoes = valorEmbarcacoes;
+    public void setValorembarcacoes(Float valorembarcacoes) {
+        this.valorembarcacoes = valorembarcacoes;
     }
 
-    public Float getValorAgendamento() {
-        return valorAgendamento;
+    public Float getValoragendamento() {
+        return valoragendamento;
     }
 
-    public void setValorAgendamento(Float valorAgendamento) {
-        this.valorAgendamento = valorAgendamento;
+    public void setValoragendamento(Float valoragendamento) {
+        this.valoragendamento = valoragendamento;
     }
 
-    public Float getValorManutencao() {
-        return valorManutencao;
+    public Float getValormanutencao() {
+        return valormanutencao;
     }
 
-    public void setValorManutencao(Float valorManutencao) {
-        this.valorManutencao = valorManutencao;
+    public void setValormanutencao(Float valormanutencao) {
+        this.valormanutencao = valormanutencao;
     }
 
-    public Float getValorTotal() {
-        return valorTotal;
+    public Float getValortotal() {
+        return valortotal;
     }
 
-    public void setValorTotal(Float valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValortotal(Float valortotal) {
+        this.valortotal = valortotal;
     }
 
-    public Integer getIdUtilizador() {
-        return idUtilizador;
+    public Integer getIdutilizador() {
+        return idutilizador;
     }
 
-    public void setIdUtilizador(Integer idUtilizador) {
-        this.idUtilizador = idUtilizador;
+    public void setIdutilizador(Integer idutilizador) {
+        this.idutilizador = idutilizador;
     }
 
-    public Integer getNumFiscal() {
-        return numFiscal;
+    public Integer getNumfiscal() {
+        return numfiscal;
     }
 
-    public void setNumFiscal(Integer numFiscal) {
-        this.numFiscal = numFiscal;
+    public void setNumfiscal(Integer numfiscal) {
+        this.numfiscal = numfiscal;
     }
 
     @Override
@@ -115,34 +115,34 @@ public class Fatura {
 
         Fatura fatura = (Fatura) o;
 
-        if (idFatura != fatura.idFatura) return false;
-        if (dataCriacao != null ? !dataCriacao.equals(fatura.dataCriacao) : fatura.dataCriacao != null) return false;
+        if (idfatura != fatura.idfatura) return false;
+        if (datacriacao != null ? !datacriacao.equals(fatura.datacriacao) : fatura.datacriacao != null) return false;
         if (prazo != null ? !prazo.equals(fatura.prazo) : fatura.prazo != null) return false;
-        if (valorEmbarcacoes != null ? !valorEmbarcacoes.equals(fatura.valorEmbarcacoes) : fatura.valorEmbarcacoes != null)
+        if (valorembarcacoes != null ? !valorembarcacoes.equals(fatura.valorembarcacoes) : fatura.valorembarcacoes != null)
             return false;
-        if (valorAgendamento != null ? !valorAgendamento.equals(fatura.valorAgendamento) : fatura.valorAgendamento != null)
+        if (valoragendamento != null ? !valoragendamento.equals(fatura.valoragendamento) : fatura.valoragendamento != null)
             return false;
-        if (valorManutencao != null ? !valorManutencao.equals(fatura.valorManutencao) : fatura.valorManutencao != null)
+        if (valormanutencao != null ? !valormanutencao.equals(fatura.valormanutencao) : fatura.valormanutencao != null)
             return false;
-        if (valorTotal != null ? !valorTotal.equals(fatura.valorTotal) : fatura.valorTotal != null) return false;
-        if (idUtilizador != null ? !idUtilizador.equals(fatura.idUtilizador) : fatura.idUtilizador != null)
+        if (valortotal != null ? !valortotal.equals(fatura.valortotal) : fatura.valortotal != null) return false;
+        if (idutilizador != null ? !idutilizador.equals(fatura.idutilizador) : fatura.idutilizador != null)
             return false;
-        if (numFiscal != null ? !numFiscal.equals(fatura.numFiscal) : fatura.numFiscal != null) return false;
+        if (numfiscal != null ? !numfiscal.equals(fatura.numfiscal) : fatura.numfiscal != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idFatura;
-        result = 31 * result + (dataCriacao != null ? dataCriacao.hashCode() : 0);
+        int result = idfatura;
+        result = 31 * result + (datacriacao != null ? datacriacao.hashCode() : 0);
         result = 31 * result + (prazo != null ? prazo.hashCode() : 0);
-        result = 31 * result + (valorEmbarcacoes != null ? valorEmbarcacoes.hashCode() : 0);
-        result = 31 * result + (valorAgendamento != null ? valorAgendamento.hashCode() : 0);
-        result = 31 * result + (valorManutencao != null ? valorManutencao.hashCode() : 0);
-        result = 31 * result + (valorTotal != null ? valorTotal.hashCode() : 0);
-        result = 31 * result + (idUtilizador != null ? idUtilizador.hashCode() : 0);
-        result = 31 * result + (numFiscal != null ? numFiscal.hashCode() : 0);
+        result = 31 * result + (valorembarcacoes != null ? valorembarcacoes.hashCode() : 0);
+        result = 31 * result + (valoragendamento != null ? valoragendamento.hashCode() : 0);
+        result = 31 * result + (valormanutencao != null ? valormanutencao.hashCode() : 0);
+        result = 31 * result + (valortotal != null ? valortotal.hashCode() : 0);
+        result = 31 * result + (idutilizador != null ? idutilizador.hashCode() : 0);
+        result = 31 * result + (numfiscal != null ? numfiscal.hashCode() : 0);
         return result;
     }
 }

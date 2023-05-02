@@ -23,8 +23,25 @@
         <class>PedidoManutencao.PedidoManutencao</class>
         <class>TipoUtilizador.TipoUtilizador</class>
         <class>Utilizador.Utilizador</class>
+        <class>Agendamento.Agendamento</class>
+        <class>AgendamentoExtra.AgendamentoExtra</class>
+        <class>CodPostal.CodPostal</class>
+        <class>Comprimento.Comprimento</class>
+        <class>Embarcacao.Embarcacao</class>
+        <class>EstadoAgendamento.EstadoAgendamento</class>
+        <class>EstadoPagamento.EstadoPagamento</class>
+        <class>Extra.Extra</class>
+        <class>Fatura.Fatura</class>
+        <class>ListaEmbarcacao.ListaEmbarcacao</class>
+        <class>ListaEstadoAgendamento.ListaEstadoAgendamento</class>
+        <class>ListaEstadoFatura.ListaEstadoFatura</class>
+        <class>Marina.Marina</class>
+        <class>Oficina.Oficina</class>
+        <class>Pagamento.Pagamento</class>
+        <class>PedidoManutencao.PedidoManutencao</class>
+        <class>TipoUtilizador.TipoUtilizador</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://aavandredns.myqnapcloud.com:5432/Projeto1"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://aavandredns.myqnapcloud.com:5432/postgres"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.username" value="andreraspberrypi"/>
             <property name="hibernate.connection.password" value="PedroAndre123"/>

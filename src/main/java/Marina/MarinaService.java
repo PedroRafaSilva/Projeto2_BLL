@@ -25,5 +25,7 @@ public class MarinaService {
     public void deleteMarina(int id) {
         marinaRepository.deleteMarina(id);
     }
+
+    public List<Marina> getMarinasComPrefix(String prefix){return marinaRepository.getMarinasComPrefix(prefix);}
 }
 

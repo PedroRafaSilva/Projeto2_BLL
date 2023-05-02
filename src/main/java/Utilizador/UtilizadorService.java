@@ -49,4 +49,6 @@ public class UtilizadorService {
 
     public List<Utilizador> getFuncionariosComPrefix(String prefix){return  utilizadorRepository.getFuncionarioComPrefix(prefix);}
 
+    public List<Utilizador>obterUtilizadoresComEmbarcacao(){return utilizadorRepository.obterUtilizadoresComEmbarcacao();}
+
 }

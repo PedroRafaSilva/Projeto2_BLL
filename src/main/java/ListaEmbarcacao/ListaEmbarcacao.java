@@ -8,38 +8,38 @@ import jakarta.persistence.*;
 public class ListaEmbarcacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idFatura")
-    private int idFatura;
+    @Column(name = "idfatura")
+    private int idfatura;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idEmbarcacao")
-    private int idEmbarcacao;
+    @Column(name = "idembarcacao")
+    private int idembarcacao;
     @Basic
-    @Column(name = "valorPagar")
-    private Float valorPagar;
+    @Column(name = "valorpagar")
+    private Float valorpagar;
 
-    public int getIdFatura() {
-        return idFatura;
+    public int getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(int idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(int idfatura) {
+        this.idfatura = idfatura;
     }
 
-    public int getIdEmbarcacao() {
-        return idEmbarcacao;
+    public int getIdembarcacao() {
+        return idembarcacao;
     }
 
-    public void setIdEmbarcacao(int idEmbarcacao) {
-        this.idEmbarcacao = idEmbarcacao;
+    public void setIdembarcacao(int idembarcacao) {
+        this.idembarcacao = idembarcacao;
     }
 
-    public Float getValorPagar() {
-        return valorPagar;
+    public Float getValorpagar() {
+        return valorpagar;
     }
 
-    public void setValorPagar(Float valorPagar) {
-        this.valorPagar = valorPagar;
+    public void setValorpagar(Float valorpagar) {
+        this.valorpagar = valorpagar;
     }
 
     @Override
@@ -49,18 +49,18 @@ public class ListaEmbarcacao {
 
         ListaEmbarcacao that = (ListaEmbarcacao) o;
 
-        if (idFatura != that.idFatura) return false;
-        if (idEmbarcacao != that.idEmbarcacao) return false;
-        if (valorPagar != null ? !valorPagar.equals(that.valorPagar) : that.valorPagar != null) return false;
+        if (idfatura != that.idfatura) return false;
+        if (idembarcacao != that.idembarcacao) return false;
+        if (valorpagar != null ? !valorpagar.equals(that.valorpagar) : that.valorpagar != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idFatura;
-        result = 31 * result + idEmbarcacao;
-        result = 31 * result + (valorPagar != null ? valorPagar.hashCode() : 0);
+        int result = idfatura;
+        result = 31 * result + idembarcacao;
+        result = 31 * result + (valorpagar != null ? valorpagar.hashCode() : 0);
         return result;
     }
 }

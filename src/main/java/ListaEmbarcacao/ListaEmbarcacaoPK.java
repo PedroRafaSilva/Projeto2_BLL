@@ -8,34 +8,34 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 
 public class ListaEmbarcacaoPK implements Serializable {
-    @Column(name = "idFatura")
+    @Column(name = "idfatura")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFatura;
-    @Column(name = "idEmbarcacao")
+    private int idfatura;
+    @Column(name = "idembarcacao")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEmbarcacao;
+    private int idembarcacao;
 
-    public ListaEmbarcacaoPK(int idFatura, int idEmbarcacao) {
-        this.idFatura = idFatura;
-        this.idEmbarcacao = idEmbarcacao;
+    public ListaEmbarcacaoPK(int idfatura, int idembarcacao) {
+        this.idfatura = idfatura;
+        this.idembarcacao = idembarcacao;
     }
 
-    public int getIdFatura() {
-        return idFatura;
+    public int getIdfatura() {
+        return idfatura;
     }
 
-    public void setIdFatura(int idFatura) {
-        this.idFatura = idFatura;
+    public void setIdfatura(int idfatura) {
+        this.idfatura = idfatura;
     }
 
-    public int getIdEmbarcacao() {
-        return idEmbarcacao;
+    public int getIdembarcacao() {
+        return idembarcacao;
     }
 
-    public void setIdEmbarcacao(int idEmbarcacao) {
-        this.idEmbarcacao = idEmbarcacao;
+    public void setIdembarcacao(int idembarcacao) {
+        this.idembarcacao = idembarcacao;
     }
 
     @Override
@@ -45,16 +45,16 @@ public class ListaEmbarcacaoPK implements Serializable {
 
         ListaEmbarcacaoPK that = (ListaEmbarcacaoPK) o;
 
-        if (idFatura != that.idFatura) return false;
-        if (idEmbarcacao != that.idEmbarcacao) return false;
+        if (idfatura != that.idfatura) return false;
+        if (idembarcacao != that.idembarcacao) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idFatura;
-        result = 31 * result + idEmbarcacao;
+        int result = idfatura;
+        result = 31 * result + idembarcacao;
         return result;
     }
 }

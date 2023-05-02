@@ -10,30 +10,30 @@ import java.sql.Date;
 public class ListaEstadoAgendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idAgendamento")
-    private int idAgendamento;
+    @Column(name = "idagendamento")
+    private int idagendamento;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idEstado")
-    private int idEstado;
+    @Column(name = "idestado")
+    private int idestado;
     @Basic
     @Column(name = "data")
     private Date data;
 
-    public int getIdAgendamento() {
-        return idAgendamento;
+    public int getIdagendamento() {
+        return idagendamento;
     }
 
-    public void setIdAgendamento(int idAgendamento) {
-        this.idAgendamento = idAgendamento;
+    public void setIdagendamento(int idagendamento) {
+        this.idagendamento = idagendamento;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public int getIdestado() {
+        return idestado;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
     }
 
     public Date getData() {
@@ -51,8 +51,8 @@ public class ListaEstadoAgendamento {
 
         ListaEstadoAgendamento that = (ListaEstadoAgendamento) o;
 
-        if (idAgendamento != that.idAgendamento) return false;
-        if (idEstado != that.idEstado) return false;
+        if (idagendamento != that.idagendamento) return false;
+        if (idestado != that.idestado) return false;
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
 
         return true;
@@ -60,8 +60,8 @@ public class ListaEstadoAgendamento {
 
     @Override
     public int hashCode() {
-        int result = idAgendamento;
-        result = 31 * result + idEstado;
+        int result = idagendamento;
+        result = 31 * result + idestado;
         result = 31 * result + (data != null ? data.hashCode() : 0);
         return result;
     }

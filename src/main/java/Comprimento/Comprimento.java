@@ -1,6 +1,9 @@
 package Comprimento;
 
+import Embarcacao.Embarcacao;
 import jakarta.persistence.*;
+
+import java.util.Collection;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Comprimento\"")
@@ -13,8 +16,10 @@ public class Comprimento {
     @Column(name = "descricao")
     private String descricao;
     @Basic
-    @Column(name = "valorComprimento")
-    private Float valorComprimento;
+    @Column(name = "valorcomprimento")
+    private Float valorcomprimento;
+    @OneToMany(mappedBy = "comprimentoByComprimento")
+    private Collection<Embarcacao> embarcacaosByComprimento;
 
     public int getComprimento() {
         return comprimento;
@@ -32,12 +37,12 @@ public class Comprimento {
         this.descricao = descricao;
     }
 
-    public Float getValorComprimento() {
-        return valorComprimento;
+    public Float getValorcomprimento() {
+        return valorcomprimento;
     }
 
-    public void setValorComprimento(Float valorComprimento) {
-        this.valorComprimento = valorComprimento;
+    public void setValorcomprimento(Float valorcomprimento) {
+        this.valorcomprimento = valorcomprimento;
     }
 
     @Override
@@ -49,7 +54,7 @@ public class Comprimento {
 
         if (comprimento != that.comprimento) return false;
         if (descricao != null ? !descricao.equals(that.descricao) : that.descricao != null) return false;
-        if (valorComprimento != null ? !valorComprimento.equals(that.valorComprimento) : that.valorComprimento != null)
+        if (valorcomprimento != null ? !valorcomprimento.equals(that.valorcomprimento) : that.valorcomprimento != null)
             return false;
 
         return true;
@@ -59,7 +64,15 @@ public class Comprimento {
     public int hashCode() {
         int result = comprimento;
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
-        result = 31 * result + (valorComprimento != null ? valorComprimento.hashCode() : 0);
+        result = 31 * result + (valorcomprimento != null ? valorcomprimento.hashCode() : 0);
         return result;
+    }
+
+    public Collection<Embarcacao> getEmbarcacaosByComprimento() {
+        return embarcacaosByComprimento;
+    }
+
+    public void setEmbarcacaosByComprimento(Collection<Embarcacao> embarcacaosByComprimento) {
+        this.embarcacaosByComprimento = embarcacaosByComprimento;
     }
 }

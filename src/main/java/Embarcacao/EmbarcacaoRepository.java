@@ -22,12 +22,27 @@ public class EmbarcacaoRepository {
         return orders;
     }
 
+    public List<Embarcacao> getEmbarcacoesComPrefix(String prefix) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Embarcacao> query = em.createQuery("SELECT e FROM Embarcacao e WHERE e.nome LIKE :prefix", Embarcacao.class);
+        query.setParameter("prefix", prefix + "%");
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Embarcacao> cq = cb.createQuery(Embarcacao.class);
+        Root<Embarcacao> root = cq.from(Embarcacao.class);
+        cq.select(root);
+        cq.orderBy(cb.asc(root.get("nome")));
+        List<Embarcacao> embarcacaos = query.getResultList();
+        em.close();
+        return embarcacaos;
+    }
+
     public void createEmbarcacao(Embarcacao embarcacao) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(embarcacao);
         em.getTransaction().commit();
         em.close();
+        emf.close();
     }
 
     public Embarcacao getEmbarcacaoById(int id) {

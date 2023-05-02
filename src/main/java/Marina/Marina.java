@@ -1,5 +1,6 @@
 package Marina;
 
+import CodPostal.CodPostal;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,21 +8,24 @@ import jakarta.persistence.*;
 public class Marina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idMarina")
-    private int idMarina;
+    @Column(name = "idmarina")
+    private int idmarina;
     @Basic
     @Column(name = "nome")
     private String nome;
     @Basic
     @Column(name = "cpostal")
     private String cpostal;
+    @ManyToOne
+    @JoinColumn(name = "cpostal", referencedColumnName = "cpostal")
+    private CodPostal codPostalByCpostal;
 
-    public int getIdMarina() {
-        return idMarina;
+    public int getIdmarina() {
+        return idmarina;
     }
 
-    public void setIdMarina(int idMarina) {
-        this.idMarina = idMarina;
+    public void setIdmarina(int idmarina) {
+        this.idmarina = idmarina;
     }
 
     public String getNome() {
@@ -47,7 +51,7 @@ public class Marina {
 
         Marina marina = (Marina) o;
 
-        if (idMarina != marina.idMarina) return false;
+        if (idmarina != marina.idmarina) return false;
         if (nome != null ? !nome.equals(marina.nome) : marina.nome != null) return false;
         if (cpostal != null ? !cpostal.equals(marina.cpostal) : marina.cpostal != null) return false;
 
@@ -56,9 +60,17 @@ public class Marina {
 
     @Override
     public int hashCode() {
-        int result = idMarina;
+        int result = idmarina;
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         result = 31 * result + (cpostal != null ? cpostal.hashCode() : 0);
         return result;
+    }
+
+    public CodPostal getCodPostalByCpostal() {
+        return codPostalByCpostal;
+    }
+
+    public void setCodPostalByCpostal(CodPostal codPostalByCpostal) {
+        this.codPostalByCpostal = codPostalByCpostal;
     }
 }

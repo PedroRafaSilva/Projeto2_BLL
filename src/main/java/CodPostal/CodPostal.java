@@ -1,16 +1,28 @@
 package CodPostal;
 
+import Marina.Marina;
+import Oficina.Oficina;
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
+
+import java.util.Collection;
 
 @Entity
 @Table(name = "\"Projecto1\".\"CodPostal\"")
 public class CodPostal {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "cpostal")
     private String cpostal;
     @Basic
     @Column(name = "localidade")
     private String localidade;
+    @OneToMany(mappedBy = "codPostalByCpostal")
+    private Collection<Marina> marinasByCpostal;
+    @OneToMany(mappedBy = "codPostalByCpostal")
+    private Collection<Oficina> oficinasByCpostal;
+    @OneToMany(mappedBy = "codPostalByCpostal")
+    private Collection<Utilizador> utilizadorsByCpostal;
 
     public String getCpostal() {
         return cpostal;
@@ -46,5 +58,29 @@ public class CodPostal {
         int result = cpostal != null ? cpostal.hashCode() : 0;
         result = 31 * result + (localidade != null ? localidade.hashCode() : 0);
         return result;
+    }
+
+    public Collection<Marina> getMarinasByCpostal() {
+        return marinasByCpostal;
+    }
+
+    public void setMarinasByCpostal(Collection<Marina> marinasByCpostal) {
+        this.marinasByCpostal = marinasByCpostal;
+    }
+
+    public Collection<Oficina> getOficinasByCpostal() {
+        return oficinasByCpostal;
+    }
+
+    public void setOficinasByCpostal(Collection<Oficina> oficinasByCpostal) {
+        this.oficinasByCpostal = oficinasByCpostal;
+    }
+
+    public Collection<Utilizador> getUtilizadorsByCpostal() {
+        return utilizadorsByCpostal;
+    }
+
+    public void setUtilizadorsByCpostal(Collection<Utilizador> utilizadorsByCpostal) {
+        this.utilizadorsByCpostal = utilizadorsByCpostal;
     }
 }

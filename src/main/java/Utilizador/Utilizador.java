@@ -1,5 +1,6 @@
 package Utilizador;
 
+import CodPostal.CodPostal;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,8 +8,8 @@ import jakarta.persistence.*;
 public class Utilizador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idUtilizador")
-    private int idUtilizador;
+    @Column(name = "idutilizador")
+    private int idutilizador;
     @Basic
     @Column(name = "nome")
     private String nome;
@@ -28,11 +29,8 @@ public class Utilizador {
     @Column(name = "porta")
     private Integer porta;
     @Basic
-    @Column(name = "cPostal")
-    private String cPostal;
-    @Basic
-    @Column(name = "idTipoUtilizador")
-    private Integer idTipoUtilizador;
+    @Column(name = "idtipoutilizador")
+    private Integer idtipoutilizador;
     @Basic
     @Column(name = "username")
     private String username;
@@ -40,12 +38,16 @@ public class Utilizador {
     @Column(name = "password")
     private String password;
 
-    public int getIdUtilizador() {
-        return idUtilizador;
+    @ManyToOne
+    @JoinColumn(name = "cpostal", referencedColumnName = "cpostal")
+    private CodPostal codPostalByCpostal;
+
+    public int getIdutilizador() {
+        return idutilizador;
     }
 
-    public void setIdUtilizador(int idUtilizador) {
-        this.idUtilizador = idUtilizador;
+    public void setIdutilizador(int idutilizador) {
+        this.idutilizador = idutilizador;
     }
 
     public String getNome() {
@@ -96,55 +98,13 @@ public class Utilizador {
         this.porta = porta;
     }
 
-    public String getcPostal() {
-        return cPostal;
+
+    public Integer getIdtipoutilizador() {
+        return idtipoutilizador;
     }
 
-    public void setcPostal(String cPostal) {
-        this.cPostal = cPostal;
-    }
-
-    public Integer getIdTipoUtilizador() {
-        return idTipoUtilizador;
-    }
-
-    public void setIdTipoUtilizador(Integer idTipoUtilizador) {
-        this.idTipoUtilizador = idTipoUtilizador;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Utilizador that = (Utilizador) o;
-
-        if (idUtilizador != that.idUtilizador) return false;
-        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
-        if (telefone != null ? !telefone.equals(that.telefone) : that.telefone != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (nif != null ? !nif.equals(that.nif) : that.nif != null) return false;
-        if (rua != null ? !rua.equals(that.rua) : that.rua != null) return false;
-        if (porta != null ? !porta.equals(that.porta) : that.porta != null) return false;
-        if (cPostal != null ? !cPostal.equals(that.cPostal) : that.cPostal != null) return false;
-        if (idTipoUtilizador != null ? !idTipoUtilizador.equals(that.idTipoUtilizador) : that.idTipoUtilizador != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idUtilizador;
-        result = 31 * result + (nome != null ? nome.hashCode() : 0);
-        result = 31 * result + (telefone != null ? telefone.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (nif != null ? nif.hashCode() : 0);
-        result = 31 * result + (rua != null ? rua.hashCode() : 0);
-        result = 31 * result + (porta != null ? porta.hashCode() : 0);
-        result = 31 * result + (cPostal != null ? cPostal.hashCode() : 0);
-        result = 31 * result + (idTipoUtilizador != null ? idTipoUtilizador.hashCode() : 0);
-        return result;
+    public void setIdtipoutilizador(Integer idtipoutilizador) {
+        this.idtipoutilizador = idtipoutilizador;
     }
 
     public String getUsername() {
@@ -161,5 +121,50 @@ public class Utilizador {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Utilizador that = (Utilizador) o;
+
+        if (idutilizador != that.idutilizador) return false;
+        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
+        if (telefone != null ? !telefone.equals(that.telefone) : that.telefone != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (nif != null ? !nif.equals(that.nif) : that.nif != null) return false;
+        if (rua != null ? !rua.equals(that.rua) : that.rua != null) return false;
+        if (porta != null ? !porta.equals(that.porta) : that.porta != null) return false;
+        if (idtipoutilizador != null ? !idtipoutilizador.equals(that.idtipoutilizador) : that.idtipoutilizador != null)
+            return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idutilizador;
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (telefone != null ? telefone.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (nif != null ? nif.hashCode() : 0);
+        result = 31 * result + (rua != null ? rua.hashCode() : 0);
+        result = 31 * result + (porta != null ? porta.hashCode() : 0);
+        result = 31 * result + (idtipoutilizador != null ? idtipoutilizador.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        return result;
+    }
+
+    public CodPostal getCodPostalByCpostal() {
+        return codPostalByCpostal;
+    }
+
+    public void setCodPostalByCpostal(CodPostal codPostalByCpostal) {
+        this.codPostalByCpostal = codPostalByCpostal;
     }
 }
