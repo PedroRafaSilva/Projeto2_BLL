@@ -1,5 +1,6 @@
 package Embarcacao;
 
+import Utilizador.Utilizador;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -36,6 +37,15 @@ public class EmbarcacaoRepository {
         em.close();
         return embarcacaos;
     }
+
+    public Embarcacao findByName(String nome) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT e FROM Embarcacao e WHERE e.nome = :nome");
+        query.setParameter("nome", nome);
+        return (Embarcacao) query.getSingleResult();
+    }
+
+
 
     public void createEmbarcacao(Embarcacao embarcacao) {
         EntityManager em = emf.createEntityManager();

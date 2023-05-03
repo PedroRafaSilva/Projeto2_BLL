@@ -4,6 +4,8 @@ import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+
+import java.sql.Date;
 import java.util.List;
 
 public class AgendamentoRepository {
@@ -63,6 +65,16 @@ public class AgendamentoRepository {
         List<Agendamento> agendamentos = query.getResultList();
         em.close();
         return agendamentos;
+    }
+
+    public boolean checkClienteAgendamentoAt(int idCliente, Date data){
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT COUNT(*) FROM Agendamento a WHERE a.data = :data AND a.idutilizador = :idCliente", Agendamento.class);
+        query.setParameter("data", data);
+        query.setParameter("idCliente", idCliente);
+        Long count = (Long) query.getSingleResult();
+        em.close();
+        return count > 0;
     }
 
 

@@ -27,5 +27,7 @@ public class EmbarcacaoService {
     }
 
     public List<Embarcacao> getEmbarcacoescomPrefix(String prefix){return embarcacaoRepository.getEmbarcacoesComPrefix(prefix);}
+
+    public Embarcacao getEmbarcacaobyName(String name){return  embarcacaoRepository.findByName(name);}
 }
 

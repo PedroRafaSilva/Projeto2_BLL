@@ -1,5 +1,6 @@
 package Agendamento;
 
+import java.sql.Date;
 import java.util.List;
 
 public class AgendamentoService {
@@ -28,6 +29,10 @@ public class AgendamentoService {
 
     public List<Agendamento> getAgendamentosByDate(int dia, int mes, int ano) {
         return agendamentoRepository.findAllAgendamentosByDate(dia, mes, ano);
+    }
+
+    public boolean checkClienteAgenAt(int id, Date date){
+        return agendamentoRepository.checkClienteAgendamentoAt(id, date);
     }
 }
 

@@ -25,5 +25,7 @@ public class FaturaService {
     public void deleteFatura(int id) {
         faturaRepository.deleteFatura(id);
     }
+
+    public Fatura getFaturaOfMothFromCliente(int idCliente, int month){ return faturaRepository.getFaturaOfMothFromCliente(idCliente, month);}
 }
 

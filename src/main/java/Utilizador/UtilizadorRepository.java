@@ -43,7 +43,7 @@ public class UtilizadorRepository {
         CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
         Root<Utilizador> root = cq.from(Utilizador.class);
         cq.select(root);
-        cq.where(cb.equal(root.get("idTipoUtilizador"), 3));
+        cq.where(cb.equal(root.get("idtipoutilizador"), 3));
         cq.orderBy(cb.asc(root.get("nome")));
         TypedQuery<Utilizador> query = em.createQuery(cq);
         List<Utilizador> orders = query.getResultList();
@@ -57,7 +57,7 @@ public class UtilizadorRepository {
         CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
         Root<Utilizador> root = cq.from(Utilizador.class);
         cq.select(root);
-        cq.where(cb.equal(root.get("idTipoUtilizador"), 2));
+        cq.where(cb.equal(root.get("idtipoutilizador"), 2));
         cq.orderBy(cb.asc(root.get("nome")));
         TypedQuery<Utilizador> query = em.createQuery(cq);
         List<Utilizador> orders = query.getResultList();
@@ -114,14 +114,14 @@ public class UtilizadorRepository {
 
     public Utilizador findClienteByName(String nome) {
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome = :nome AND u.idTipoUtilizador = 3");
+        Query query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome = :nome AND u.idtipoutilizador = 3");
         query.setParameter("nome", nome);
         return (Utilizador) query.getSingleResult();
     }
 
     public List<Utilizador> getClientesComPrefix(String prefix) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idTipoUtilizador = 3", Utilizador.class);
+        TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idtipoutilizador = 3", Utilizador.class);
         query.setParameter("prefix", prefix + "%");
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);
@@ -134,7 +134,7 @@ public class UtilizadorRepository {
 
     public List<Utilizador> getFuncionarioComPrefix(String prefix) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idTipoUtilizador = 2", Utilizador.class);
+        TypedQuery<Utilizador> query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome LIKE :prefix AND  u.idtipoutilizador = 2", Utilizador.class);
         query.setParameter("prefix", prefix + "%");
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Utilizador> cq = cb.createQuery(Utilizador.class);

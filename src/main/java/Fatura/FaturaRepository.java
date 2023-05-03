@@ -1,5 +1,6 @@
 package Fatura;
 
+import Agendamento.Agendamento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -54,6 +55,16 @@ public class FaturaRepository {
         em.remove(fatura);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public Fatura getFaturaOfMothFromCliente(int idCliente, int month){
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Fatura> query = em.createQuery("SELECT f FROM Fatura f WHERE EXTRACT(MONTH FROM f.datacriacao) = :month AND f.idutilizador = :idCliente", Fatura.class);
+        query.setParameter("idCliente", idCliente);
+        query.setParameter("month", month);
+        Fatura fatura = query.getSingleResult();
+        em.close();
+        return fatura;
     }
 }
 
