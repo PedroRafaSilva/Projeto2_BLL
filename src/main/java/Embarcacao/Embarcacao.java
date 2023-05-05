@@ -27,7 +27,7 @@ public class Embarcacao {
     private Integer comprimento;
 
     @ManyToOne
-    @JoinColumn(name = "comprimento", updatable = false, insertable = false)
+    @JoinColumn(name = "Comprimento", updatable = false, insertable = false)
     private Comprimento descComprimento;
 
     @ManyToOne
@@ -50,7 +50,7 @@ public class Embarcacao {
         return utilizador;
     }
 
-    public void setutilizador(Utilizador idutilizador) {
+    public void setutilizador(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
 
@@ -66,7 +66,7 @@ public class Embarcacao {
         return comprimento;
     }
 
-    public void setComprimento(Integer idComprimento) {
+    public void setComprimento(Integer comprimento) {
         this.comprimento = comprimento;
     }
 
