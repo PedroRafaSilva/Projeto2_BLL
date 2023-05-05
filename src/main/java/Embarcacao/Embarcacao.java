@@ -27,16 +27,12 @@ public class Embarcacao {
     private Integer comprimento;
 
     @ManyToOne
-    @JoinColumn(name = "idutilizador")
-    private Utilizador utilizador;
-
-    @ManyToOne
     @JoinColumn(name = "comprimento", updatable = false, insertable = false)
     private Comprimento descComprimento;
 
     @ManyToOne
     @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
-    private Utilizador idutilizador;
+    private Utilizador utilizador;
 
     @ManyToOne
     @JoinColumn(name = "idmarina", insertable = false, updatable = false)
@@ -50,12 +46,12 @@ public class Embarcacao {
         this.marina = idmarina;
     }
 
-    public Utilizador getIdutilizador() {
-        return idutilizador;
+    public Utilizador getutilizador() {
+        return utilizador;
     }
 
-    public void setIdutilizador(Utilizador idutilizador) {
-        this.idutilizador = idutilizador;
+    public void setutilizador(Utilizador idutilizador) {
+        this.utilizador = utilizador;
     }
 
     public Comprimento getDescComprimento() {
@@ -72,14 +68,6 @@ public class Embarcacao {
 
     public void setComprimento(Integer idComprimento) {
         this.comprimento = comprimento;
-    }
-
-    public Utilizador getUtilizador() {
-        return utilizador;
-    }
-
-    public void setUtilizador(Utilizador utilizador) {
-        this.utilizador = utilizador;
     }
 
     public int getIdEmbarcacao() {

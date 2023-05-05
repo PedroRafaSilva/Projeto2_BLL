@@ -32,7 +32,10 @@ public class AgendamentoExtraRepository {
 
     public AgendamentoExtra getAgendamentoExtraById(int id, int id2) {
         EntityManager em = emf.createEntityManager();
-        AgendamentoExtra agendamentoExtra = em.find(AgendamentoExtra.class, new AgendamentoExtraPK(id, id2));
+        AgendamentoExtraPK pk = new AgendamentoExtraPK();
+        pk.setIdagendamento(id);
+        pk.setIdextra(id2);
+        AgendamentoExtra agendamentoExtra = em.find(AgendamentoExtra.class, pk);
         em.close();
         return agendamentoExtra;
     }

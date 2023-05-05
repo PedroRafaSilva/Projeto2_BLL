@@ -34,5 +34,7 @@ public class AgendamentoService {
     public boolean checkClienteAgenAt(int id, Date date){
         return agendamentoRepository.checkClienteAgendamentoAt(id, date);
     }
+
+    public Agendamento findMostRecentAgendamento(){ return agendamentoRepository.findMostRecentAgendamento();}
 }
 

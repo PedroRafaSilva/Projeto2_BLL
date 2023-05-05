@@ -56,6 +56,20 @@ public class AgendamentoRepository {
         em.close();
     }
 
+    public Agendamento findMostRecentAgendamento() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Agendamento> query = em.createQuery("SELECT a FROM Agendamento a ORDER BY a.idagendamento DESC", Agendamento.class);
+        query.setMaxResults(1);
+        List<Agendamento> agendamentos = query.getResultList();
+        em.close();
+        if (agendamentos.isEmpty()) {
+            return null;
+        } else {
+            return agendamentos.get(0);
+        }
+    }
+
+
     public List<Agendamento> findAllAgendamentosByDate(int day, int month, int year) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Agendamento> query = em.createQuery("SELECT a FROM Agendamento a WHERE EXTRACT(year from a.data) = :year AND EXTRACT(month from a.data) = :month AND EXTRACT(day from a.data) = :day", Agendamento.class);
