@@ -1,9 +1,13 @@
 package ListaEmbarcacao;
 
-import jakarta.persistence .*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+
 import java.util.List;
 
 public class ListaEmbarcacaoRepository {
@@ -32,7 +36,10 @@ public class ListaEmbarcacaoRepository {
 
     public ListaEmbarcacao getListaEmbarcacaoById(int id, int id2) {
         EntityManager em = emf.createEntityManager();
-        ListaEmbarcacao listaEmbarcacao = em.find(ListaEmbarcacao.class, new ListaEmbarcacaoPK(id, id2));
+        ListaEmbarcacaoPK pk = new ListaEmbarcacaoPK();
+        pk.setIdembarcacao(id);
+        pk.setIdfatura(id2);
+        ListaEmbarcacao listaEmbarcacao = em.find(ListaEmbarcacao.class, pk);
         em.close();
         return listaEmbarcacao;
     }
@@ -48,7 +55,10 @@ public class ListaEmbarcacaoRepository {
     public void deleteListaEmbarcacao(int id, int id2) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ListaEmbarcacao listaEmbarcacao = em.find(ListaEmbarcacao.class, new ListaEmbarcacaoPK(id, id2));
+        ListaEmbarcacaoPK pk = new ListaEmbarcacaoPK();
+        pk.setIdembarcacao(id);
+        pk.setIdfatura(id2);
+        ListaEmbarcacao listaEmbarcacao = em.find(ListaEmbarcacao.class, pk);
         em.remove(listaEmbarcacao);
         em.getTransaction().commit();
         em.close();

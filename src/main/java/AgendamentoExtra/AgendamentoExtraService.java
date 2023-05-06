@@ -10,6 +10,10 @@ public class AgendamentoExtraService {
         return agendamentoExtraRepository.getAllAgendamentoExtras();
     }
 
+    public List<AgendamentoExtra> findAgendamentoExtraByIdAgendamento(int idAgendamento){
+        return agendamentoExtraRepository.findAgendamentoExtraByIdAgendamento(idAgendamento);
+    }
+
     public void createAgendamentoExtra(AgendamentoExtra agendamentoExtra) {
         agendamentoExtraRepository.createAgendamentoExtra(agendamentoExtra);
     }

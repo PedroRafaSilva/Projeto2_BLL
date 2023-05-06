@@ -10,16 +10,12 @@ import java.io.Serializable;
 public class ListaEmbarcacaoPK implements Serializable {
     @Column(name = "idfatura")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idfatura;
     @Column(name = "idembarcacao")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idembarcacao;
 
-    public ListaEmbarcacaoPK(int idfatura, int idembarcacao) {
-        this.idfatura = idfatura;
-        this.idembarcacao = idembarcacao;
+    public ListaEmbarcacaoPK() {
     }
 
     public int getIdfatura() {

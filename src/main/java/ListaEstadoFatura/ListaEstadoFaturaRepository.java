@@ -1,11 +1,17 @@
 package ListaEstadoFatura;
 
-import jakarta.persistence .*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
+@Transactional
 public class ListaEstadoFaturaRepository {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -32,7 +38,10 @@ public class ListaEstadoFaturaRepository {
 
     public ListaEstadoFatura getListaEstadoFaturaById(int id, int id2) {
         EntityManager em = emf.createEntityManager();
-        ListaEstadoFatura listaEstadoFatura = em.find(ListaEstadoFatura.class, new ListaEstadoFaturaPK(id, id2));
+        ListaEstadoFaturaPK pk = new ListaEstadoFaturaPK();
+        pk.setIdfatura(id);
+        pk.setIdestado(id2);
+        ListaEstadoFatura listaEstadoFatura = em.find(ListaEstadoFatura.class, pk);
         em.close();
         return listaEstadoFatura;
     }
@@ -48,7 +57,10 @@ public class ListaEstadoFaturaRepository {
     public void deleteListaEstadoFatura(int id, int id2) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ListaEstadoFatura listaEstadoFatura = em.find(ListaEstadoFatura.class, new ListaEstadoFaturaPK(id, id2));
+        ListaEstadoFaturaPK pk = new ListaEstadoFaturaPK();
+        pk.setIdfatura(id);
+        pk.setIdestado(id2);
+        ListaEstadoFatura listaEstadoFatura = em.find(ListaEstadoFatura.class, pk);
         em.remove(listaEstadoFatura);
         em.getTransaction().commit();
         em.close();

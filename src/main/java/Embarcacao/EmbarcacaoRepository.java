@@ -1,12 +1,14 @@
 package Embarcacao;
 
-import Utilizador.Utilizador;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
+@Transactional
 public class EmbarcacaoRepository {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");

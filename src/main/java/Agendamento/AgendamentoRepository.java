@@ -4,10 +4,12 @@ import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
 
 import java.sql.Date;
 import java.util.List;
 
+@Transactional
 public class AgendamentoRepository {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");

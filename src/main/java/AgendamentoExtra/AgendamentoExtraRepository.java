@@ -4,8 +4,11 @@ import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 
+@Transactional
 public class AgendamentoExtraRepository {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
@@ -21,6 +24,15 @@ public class AgendamentoExtraRepository {
         em.close();
         return orders;
     }
+
+    public List<AgendamentoExtra> findAgendamentoExtraByIdAgendamento(int idAgendamento) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<AgendamentoExtra> query = em.createQuery(
+                "SELECT ae FROM AgendamentoExtra ae WHERE ae.idagendamento = :idAgendamento", AgendamentoExtra.class);
+        query.setParameter("idAgendamento", idAgendamento);
+        return query.getResultList();
+    }
+
 
     public void createAgendamentoExtra(AgendamentoExtra agendamentoExtra) {
         EntityManager em = emf.createEntityManager();
@@ -50,8 +62,10 @@ public class AgendamentoExtraRepository {
 
     public void deleteAgendamentoExtra(int id, int id2) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        AgendamentoExtra agendamentoExtra = em.find(AgendamentoExtra.class, new AgendamentoExtraPK(id, id2));
+        AgendamentoExtraPK pk = new AgendamentoExtraPK();
+        pk.setIdagendamento(id);
+        pk.setIdextra(id2);
+        AgendamentoExtra agendamentoExtra = em.find(AgendamentoExtra.class, pk);
         em.remove(agendamentoExtra);
         em.getTransaction().commit();
         em.close();

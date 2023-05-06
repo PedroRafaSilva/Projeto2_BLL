@@ -1,5 +1,6 @@
 package ListaEstadoAgendamento;
 
+import EstadoAgendamento.EstadoAgendamento;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -8,17 +9,28 @@ import java.sql.Date;
 @IdClass(ListaEstadoAgendamentoPK.class)
 @Table(name = "\"Projecto1\".\"ListaEstadoAgendamento\"")
 public class ListaEstadoAgendamento {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "idagendamento")
     private int idagendamento;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "idestado")
     private int idestado;
     @Basic
     @Column(name = "data")
     private Date data;
+
+    @ManyToOne
+    @JoinColumn(name = "idestado", updatable = false, insertable = false)
+    private EstadoAgendamento estadoAgendamento;
+
+    public EstadoAgendamento getEstadoAgendamento() {
+        return estadoAgendamento;
+    }
+    public void setEstadoAgendamento(EstadoAgendamento estadoAgendamento) {
+        this.estadoAgendamento = estadoAgendamento;
+    }
 
     public int getIdagendamento() {
         return idagendamento;

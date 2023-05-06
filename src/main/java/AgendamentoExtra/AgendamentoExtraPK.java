@@ -18,11 +18,6 @@ public class AgendamentoExtraPK implements Serializable {
     public AgendamentoExtraPK() {
     }
 
-    public AgendamentoExtraPK(int idagendamento, int idextra) {
-        this.idagendamento = idagendamento;
-        this.idextra = idextra;
-    }
-
     public int getIdagendamento() {
         return idagendamento;
     }
