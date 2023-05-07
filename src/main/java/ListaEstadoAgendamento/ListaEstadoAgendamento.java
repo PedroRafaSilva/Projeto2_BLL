@@ -4,6 +4,7 @@ import EstadoAgendamento.EstadoAgendamento;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @IdClass(ListaEstadoAgendamentoPK.class)
@@ -19,7 +20,7 @@ public class ListaEstadoAgendamento {
     private int idestado;
     @Basic
     @Column(name = "data")
-    private Date data;
+    private LocalDateTime data;
 
     @ManyToOne
     @JoinColumn(name = "idestado", updatable = false, insertable = false)
@@ -48,11 +49,11 @@ public class ListaEstadoAgendamento {
         this.idestado = idestado;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 

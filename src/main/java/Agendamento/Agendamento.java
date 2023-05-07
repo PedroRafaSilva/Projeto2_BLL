@@ -44,6 +44,7 @@ public class Agendamento {
     @JoinColumn(name = "idembarcacao", updatable = false, insertable = false)
     private Embarcacao embarcacao;
 
+
     public Embarcacao getEmbarcacao() {
         return embarcacao;
     }

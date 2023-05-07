@@ -10,7 +10,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "\"Projecto1\".\"CodPostal\"")
 public class CodPostal {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "cpostal")
     private String cpostal;
