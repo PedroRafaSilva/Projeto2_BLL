@@ -74,7 +74,7 @@ public class AgendamentoRepository {
 
     public List<Agendamento> findAllAgendamentosByDate(int day, int month, int year) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Agendamento> query = em.createQuery("SELECT a FROM Agendamento a WHERE EXTRACT(year from a.data) = :year AND EXTRACT(month from a.data) = :month AND EXTRACT(day from a.data) = :day", Agendamento.class);
+        TypedQuery<Agendamento> query = em.createQuery("SELECT a FROM Agendamento a WHERE EXTRACT(year from a.data) = :year AND EXTRACT(month from a.data) = :month AND EXTRACT(day from a.data) = :day ORDER BY a.horainicio", Agendamento.class);
         query.setParameter("year", year);
         query.setParameter("month", month);
         query.setParameter("day", day);
