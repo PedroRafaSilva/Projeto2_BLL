@@ -1,5 +1,6 @@
 package Oficina;
 
+import Oficina.Oficina;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -65,6 +66,13 @@ public class OficinaRepository {
         em.remove(oficina);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public Oficina findOficinaByName(String nome) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT m FROM Oficina m WHERE m.nome = :nome");
+        query.setParameter("nome", nome);
+        return (Oficina) query.getSingleResult();
     }
 
 }

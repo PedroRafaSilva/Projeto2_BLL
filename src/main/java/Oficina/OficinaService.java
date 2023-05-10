@@ -29,5 +29,7 @@ public class OficinaService {
     public List<Oficina> getOficinasComPrefix(String prefix){
         return oficinaRepository.getOficinasComPrefix(prefix);
     }
+
+    public Oficina getOficinaByName(String name){return oficinaRepository.findOficinaByName(name);}
 }
 

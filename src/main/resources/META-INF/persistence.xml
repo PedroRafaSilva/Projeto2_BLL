@@ -40,6 +40,7 @@
         <class>Pagamento.Pagamento</class>
         <class>PedidoManutencao.PedidoManutencao</class>
         <class>TipoUtilizador.TipoUtilizador</class>
+        <class>PedidoDescricao.PedidoDescricao</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:postgresql://aavandredns.myqnapcloud.com:5432/Projeto1"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

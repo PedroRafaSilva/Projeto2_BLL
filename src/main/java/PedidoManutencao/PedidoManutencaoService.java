@@ -1,5 +1,8 @@
 package PedidoManutencao;
 
+import Agendamento.Agendamento;
+
+import java.sql.Date;
 import java.util.List;
 
 public class PedidoManutencaoService {
@@ -24,6 +27,14 @@ public class PedidoManutencaoService {
 
     public void deletePedidoManutencao(int id) {
         pedidoManutencaoRepository.deletePedidoManutencao(id);
+    }
+
+    public List<PedidoManutencao> getPedidosByDate(int dia, int mes, int ano) {
+        return pedidoManutencaoRepository.findAllPedidossByDate(dia, mes, ano);
+    }
+
+    public boolean checkPedidoEmbarcacaoAt(int id, Date date){
+        return pedidoManutencaoRepository.checkPedidoEmbarcacaooAt(id, date);
     }
 }
 

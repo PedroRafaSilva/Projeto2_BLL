@@ -1,5 +1,8 @@
 package PedidoManutencao;
 
+import Embarcacao.Embarcacao;
+import Oficina.Oficina;
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -32,6 +35,42 @@ public class PedidoManutencao {
     @Basic
     @Column(name = "idfatura")
     private Integer idfatura;
+
+    @ManyToOne
+    @JoinColumn(name = "idembarcacao", updatable = false, insertable = false)
+    private Embarcacao embarcacao;
+
+    @ManyToOne
+    @JoinColumn(name = "idoficina", updatable = false, insertable = false)
+    private Oficina oficina;
+
+    @ManyToOne
+    @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
+    private Utilizador utilizador;
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
+
+    public Oficina getOficina() {
+        return oficina;
+    }
+
+    public void setOficina(Oficina oficina) {
+        this.oficina = oficina;
+    }
+
+    public Embarcacao getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(Embarcacao embarcacao) {
+        this.embarcacao = embarcacao;
+    }
 
     public int getIdpedido() {
         return idpedido;
