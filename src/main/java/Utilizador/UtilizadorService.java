@@ -45,6 +45,10 @@ public class UtilizadorService {
         return utilizadorRepository.findByName(nome);
     }
 
+    public Utilizador getUtilizadorByUserNome(String nome){
+        return utilizadorRepository.findByUserName(nome);
+    }
+
     public Utilizador getClienteByNome(String nome){
         return utilizadorRepository.findClienteByName(nome);
     }

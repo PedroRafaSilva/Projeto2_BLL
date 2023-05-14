@@ -1,6 +1,10 @@
 package Extra;
 
+import AgendamentoExtra.AgendamentoExtra;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Extra\"")
@@ -15,6 +19,17 @@ public class Extra {
     @Basic
     @Column(name = "valoratualextra")
     private Float valoratualextra;
+
+    @OneToMany(mappedBy = "extra", cascade = CascadeType.REMOVE)
+    private List<AgendamentoExtra> agendamentoExtras = new ArrayList<>();
+
+    public List<AgendamentoExtra> getAgendamentoExtras() {
+        return agendamentoExtras;
+    }
+
+    public void setAgendamentoExtras(List<AgendamentoExtra> agendamentoExtras) {
+        this.agendamentoExtras = agendamentoExtras;
+    }
 
     public int getIdextra() {
         return idextra;

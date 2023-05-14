@@ -1,5 +1,6 @@
 package Marina;
 
+import Main.EntityManagerFactorySingleton;
 import Utilizador.Utilizador;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class MarinaRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<Marina> getAllMarinas() {
         EntityManager em = emf.createEntityManager();

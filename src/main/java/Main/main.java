@@ -19,6 +19,6 @@ import java.util.List;
 public class main {
     public static void main(String[] args){
         AgendamentoService agendamentoService = new AgendamentoService();
-        System.out.println(agendamentoService.getAgendamentoById(66).getData());
+        System.out.println(agendamentoService.getAgendamentoById(66).getAgendamentoExtras());
     }
 }

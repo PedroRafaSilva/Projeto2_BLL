@@ -1,5 +1,7 @@
 package ListaEstadoFatura;
 
+import ListaEstadoAgendamento.ListaEstadoAgendamento;
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -14,7 +16,7 @@ import java.util.List;
 @Transactional
 public class ListaEstadoFaturaRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<ListaEstadoFatura> getAllListaEstadoFaturas() {
         EntityManager em = emf.createEntityManager();
@@ -64,6 +66,15 @@ public class ListaEstadoFaturaRepository {
         em.remove(listaEstadoFatura);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public ListaEstadoFatura findEstadoByFatura(int idFatura) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<ListaEstadoFatura> query = em.createQuery(
+                "SELECT lf FROM ListaEstadoFatura lf WHERE lf.idfatura = :idfatura ORDER BY lf.data DESC", ListaEstadoFatura.class);
+        query.setParameter("idfatura", idFatura);
+        query.setMaxResults(1);
+        return query.getSingleResult();
     }
 
 }

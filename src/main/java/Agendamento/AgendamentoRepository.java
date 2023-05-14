@@ -1,5 +1,6 @@
 package Agendamento;
 
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -12,7 +13,7 @@ import java.util.List;
 @Transactional
 public class AgendamentoRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<Agendamento> getAllAgendamentos() {
         EntityManager em = emf.createEntityManager();

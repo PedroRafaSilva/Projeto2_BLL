@@ -15,8 +15,12 @@ public class AgendamentoExtraPK implements Serializable {
     @Id
     private int idextra;
 
+
+
     public AgendamentoExtraPK() {
     }
+
+
 
     public int getIdagendamento() {
         return idagendamento;
@@ -33,6 +37,9 @@ public class AgendamentoExtraPK implements Serializable {
     public void setIdextra(int idextra) {
         this.idextra = idextra;
     }
+
+
+
 
     @Override
     public boolean equals(Object o) {

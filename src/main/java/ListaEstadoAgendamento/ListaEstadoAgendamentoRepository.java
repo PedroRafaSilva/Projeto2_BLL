@@ -3,6 +3,7 @@ package ListaEstadoAgendamento;
 import AgendamentoExtra.AgendamentoExtra;
 import ListaEmbarcacao.ListaEmbarcacao;
 import ListaEmbarcacao.ListaEmbarcacaoPK;
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ListaEstadoAgendamentoRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<ListaEstadoAgendamento> getAllListaEstadoAgendamentos() {
         EntityManager em = emf.createEntityManager();

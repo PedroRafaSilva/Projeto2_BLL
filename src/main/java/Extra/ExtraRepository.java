@@ -1,5 +1,6 @@
 package Extra;
 
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class ExtraRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<Extra> getAllExtras() {
         EntityManager em = emf.createEntityManager();

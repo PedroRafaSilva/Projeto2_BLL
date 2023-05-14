@@ -1,6 +1,10 @@
 package PedidoDescricao;
 
+import PedidoManutencao.PedidoManutencao;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"PedidoDescricao\"")
@@ -11,6 +15,17 @@ public class PedidoDescricao {
     @Basic
     @Column(name = "valor")
     private double valor;
+
+    @OneToMany(mappedBy = "pedidoDescricao", cascade = CascadeType.REMOVE)
+    private List<PedidoManutencao> pedidoManutencaos = new ArrayList<>();
+
+    public List<PedidoManutencao> getPedidoManutencaos() {
+        return pedidoManutencaos;
+    }
+
+    public void setPedidoManutencaos(List<PedidoManutencao> pedidoManutencaos) {
+        this.pedidoManutencaos = pedidoManutencaos;
+    }
 
     public String getDescricao() {
         return descricao;

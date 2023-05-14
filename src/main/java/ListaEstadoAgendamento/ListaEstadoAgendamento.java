@@ -1,5 +1,6 @@
 package ListaEstadoAgendamento;
 
+import Agendamento.Agendamento;
 import EstadoAgendamento.EstadoAgendamento;
 import jakarta.persistence.*;
 
@@ -23,15 +24,29 @@ public class ListaEstadoAgendamento {
     private LocalDateTime data;
 
     @ManyToOne
+    @JoinColumn(name = "idagendamento", updatable = false, insertable = false)
+    private Agendamento agendamento;
+
+    @ManyToOne
     @JoinColumn(name = "idestado", updatable = false, insertable = false)
     private EstadoAgendamento estadoAgendamento;
 
     public EstadoAgendamento getEstadoAgendamento() {
         return estadoAgendamento;
     }
+
     public void setEstadoAgendamento(EstadoAgendamento estadoAgendamento) {
         this.estadoAgendamento = estadoAgendamento;
     }
+
+    public Agendamento getAgendamento() {
+        return agendamento;
+    }
+
+    public void setAgendamento(Agendamento agendamento) {
+        this.agendamento = agendamento;
+    }
+
 
     public int getIdagendamento() {
         return idagendamento;

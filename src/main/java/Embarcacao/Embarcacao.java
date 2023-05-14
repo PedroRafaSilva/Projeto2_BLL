@@ -1,9 +1,15 @@
 package Embarcacao;
 
+import Agendamento.Agendamento;
 import Comprimento.Comprimento;
+import ListaEmbarcacao.ListaEmbarcacao;
 import Marina.Marina;
+import PedidoManutencao.PedidoManutencao;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Embarcacao\"")
@@ -26,8 +32,12 @@ public class Embarcacao {
     @Column(name = "comprimento")
     private Integer comprimento;
 
+    @OneToMany(mappedBy = "embarcacao", cascade = CascadeType.REMOVE)
+    @OrderBy("data")
+    private List<Agendamento> agendamentoes = new ArrayList<>();
+
     @ManyToOne
-    @JoinColumn(name = "Comprimento", updatable = false, insertable = false)
+    @JoinColumn(name = "comprimento", updatable = false, insertable = false)
     private Comprimento descComprimento;
 
     @ManyToOne
@@ -35,8 +45,38 @@ public class Embarcacao {
     private Utilizador utilizador;
 
     @ManyToOne
-    @JoinColumn(name = "idmarina", insertable = false, updatable = false)
+    @JoinColumn(name = "idmarina", updatable = false, insertable = false)
     private Marina marina;
+
+    @OneToMany(mappedBy = "embarcacao", cascade = CascadeType.REMOVE)
+    private List<ListaEmbarcacao> listaEmbarcacaos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "embarcacao", cascade = CascadeType.REMOVE)
+    private List<PedidoManutencao> pedidoManutencaos = new ArrayList<>();
+
+    public List<PedidoManutencao> getPedidoManutencaos() {
+        return pedidoManutencaos;
+    }
+
+    public void setPedidoManutencaos(List<PedidoManutencao> pedidoManutencaos) {
+        this.pedidoManutencaos = pedidoManutencaos;
+    }
+
+    public List<ListaEmbarcacao> getListaEmbarcacaos() {
+        return listaEmbarcacaos;
+    }
+
+    public void setListaEmbarcacaos(List<ListaEmbarcacao> listaEmbarcacaos) {
+        this.listaEmbarcacaos = listaEmbarcacaos;
+    }
+
+    public List<Agendamento> getAgendamentoes() {
+        return agendamentoes;
+    }
+
+    public void setAgendamentoes(List<Agendamento> agendamentoes) {
+        this.agendamentoes = agendamentoes;
+    }
 
     public Marina getmarina() {
         return marina;

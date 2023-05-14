@@ -1,7 +1,16 @@
 package Utilizador;
 
+import Agendamento.Agendamento;
 import CodPostal.CodPostal;
+import Embarcacao.Embarcacao;
+import Fatura.Fatura;
+import Pagamento.Pagamento;
+import PedidoManutencao.PedidoManutencao;
+import TipoUtilizador.TipoUtilizador;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Utilizador\"")
@@ -41,6 +50,77 @@ public class Utilizador {
     @Basic
     @Column(name = "cpostal")
     private String cPostal;
+
+
+
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.REMOVE)
+    @OrderBy("data")
+    private List<Agendamento> agendamentoes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.REMOVE)
+    @OrderBy("nome")
+    private List<Embarcacao> embarcacaos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.REMOVE)
+    private List<Fatura> faturas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.REMOVE)
+    private List<Pagamento> pagamentos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.REMOVE)
+    private List<PedidoManutencao> pedidoManutencaos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "idtipoutilizador", updatable = false, insertable = false)
+    private TipoUtilizador tipoUtilizador;
+
+    public TipoUtilizador getTipoUtilizador() {
+        return tipoUtilizador;
+    }
+
+    public void setTipoUtilizador(TipoUtilizador tipoUtilizador) {
+        this.tipoUtilizador = tipoUtilizador;
+    }
+
+    public List<PedidoManutencao> getPedidoManutencaos() {
+        return pedidoManutencaos;
+    }
+
+    public void setPedidoManutencaos(List<PedidoManutencao> pedidoManutencaos) {
+        this.pedidoManutencaos = pedidoManutencaos;
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(List<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
+
+    public List<Fatura> getFaturas() {
+        return faturas;
+    }
+
+    public void setFaturas(List<Fatura> faturas) {
+        this.faturas = faturas;
+    }
+
+    public List<Embarcacao> getEmbarcacaos() {
+        return embarcacaos;
+    }
+
+    public void setEmbarcacaos(List<Embarcacao> embarcacaos) {
+        this.embarcacaos = embarcacaos;
+    }
+
+    public List<Agendamento> getAgendamentoes() {
+        return agendamentoes;
+    }
+
+    public void setAgendamentoes(List<Agendamento> agendamentoes) {
+        this.agendamentoes = agendamentoes;
+    }
 
     public String getcPostal() {
         return cPostal;

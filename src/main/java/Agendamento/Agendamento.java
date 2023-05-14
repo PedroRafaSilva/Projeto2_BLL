@@ -1,11 +1,15 @@
 package Agendamento;
 
+import AgendamentoExtra.AgendamentoExtra;
 import Embarcacao.Embarcacao;
+import ListaEstadoAgendamento.ListaEstadoAgendamento;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Agendamento\"")
@@ -35,15 +39,34 @@ public class Agendamento {
     @Basic
     @Column(name = "idutilizador")
     private Integer idutilizador;
-
     @ManyToOne
     @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
     private Utilizador utilizador;
-
     @ManyToOne
     @JoinColumn(name = "idembarcacao", updatable = false, insertable = false)
     private Embarcacao embarcacao;
+    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.REMOVE)
+    private List<AgendamentoExtra> agendamentoExtras = new ArrayList<>();
+    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.REMOVE)
+    private List<ListaEstadoAgendamento> listaEstadoAgendamentoes = new ArrayList<>();
 
+
+
+    public List<ListaEstadoAgendamento> getListaEstadoAgendamentoes() {
+        return listaEstadoAgendamentoes;
+    }
+
+    public void setListaEstadoAgendamentoes(List<ListaEstadoAgendamento> listaEstadoAgendamentoes) {
+        this.listaEstadoAgendamentoes = listaEstadoAgendamentoes;
+    }
+
+    public List<AgendamentoExtra> getAgendamentoExtras() {
+        return agendamentoExtras;
+    }
+
+    public void setAgendamentoExtras(List<AgendamentoExtra> agendamentoExtras) {
+        this.agendamentoExtras = agendamentoExtras;
+    }
 
     public Embarcacao getEmbarcacao() {
         return embarcacao;
@@ -124,6 +147,8 @@ public class Agendamento {
     public void setIdutilizador(Integer idutilizador) {
         this.idutilizador = idutilizador;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

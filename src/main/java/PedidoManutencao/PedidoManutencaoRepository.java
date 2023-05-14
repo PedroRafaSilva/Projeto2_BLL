@@ -1,6 +1,7 @@
 package PedidoManutencao;
 
 import Agendamento.Agendamento;
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class PedidoManutencaoRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<PedidoManutencao> getAllPedidoManutencaos() {
         EntityManager em = emf.createEntityManager();

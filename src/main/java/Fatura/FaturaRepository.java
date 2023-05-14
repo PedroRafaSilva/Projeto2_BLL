@@ -1,29 +1,29 @@
 package Fatura;
 
 import Agendamento.Agendamento;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
+import Main.EntityManagerFactorySingleton;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class FaturaRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<Fatura> getAllFaturas() {
         EntityManager em = emf.createEntityManager();
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Fatura> cq = cb.createQuery(Fatura.class);
-        Root<Fatura> root = cq.from(Fatura.class);
-        cq.select(root);
-        TypedQuery<Fatura> query = em.createQuery(cq);
-        List<Fatura> orders = query.getResultList();
+        int month = LocalDate.now().getMonthValue();
+        int year = LocalDate.now().getYear();
+        TypedQuery<Fatura> query = em.createQuery("SELECT f FROM Fatura f WHERE EXTRACT(MONTH FROM f.datacriacao) < :month AND EXTRACT(YEAR FROM f.datacriacao) <= :year", Fatura.class);
+        query.setParameter("year", year);
+        query.setParameter("month", month);
+        List<Fatura> faturas = query.getResultList();
         em.close();
-        return orders;
+        return faturas;
     }
 
     public void createFatura(Fatura fatura) {
@@ -65,6 +65,16 @@ public class FaturaRepository {
         Fatura fatura = query.getSingleResult();
         em.close();
         return fatura;
+    }
+
+    public boolean checkFaturaOfMothFromCliente(int idCliente, int month){
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT COUNT(*) FROM Fatura f WHERE EXTRACT(MONTH FROM f.datacriacao) = :month AND f.idutilizador = :idCliente", Fatura.class);
+        query.setParameter("idCliente", idCliente);
+        query.setParameter("month", month);
+        Long count = (Long) query.getSingleResult();
+        em.close();
+        return count > 0;
     }
 }
 

@@ -1,5 +1,7 @@
 package AgendamentoExtra;
 
+import Agendamento.Agendamento;
+import Extra.Extra;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,7 +12,6 @@ public class AgendamentoExtra {
     @Id
     @Column(name = "idagendamento")
     private int idagendamento;
-
     @Id
     @Column(name = "idextra")
     private int idextra;
@@ -20,6 +21,30 @@ public class AgendamentoExtra {
     @Basic
     @Column(name = "qtd")
     private Integer qtd;
+    @ManyToOne
+    @JoinColumn(name = "idagendamento", updatable = false, insertable = false)
+    private Agendamento agendamento;
+    @ManyToOne
+    @JoinColumn(name = "idextra", updatable = false, insertable = false)
+    private Extra extra;
+
+
+
+    public Extra getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Extra extra) {
+        this.extra = extra;
+    }
+
+    public Agendamento getAgendamento() {
+        return agendamento;
+    }
+
+    public void setAgendamento(Agendamento agendamento) {
+        this.agendamento = agendamento;
+    }
 
     public int getIdagendamento() {
         return idagendamento;
@@ -52,6 +77,8 @@ public class AgendamentoExtra {
     public void setQtd(Integer qtd) {
         this.qtd = qtd;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

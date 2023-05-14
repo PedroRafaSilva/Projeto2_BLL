@@ -1,5 +1,6 @@
 package ListaEmbarcacao;
 
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class ListaEmbarcacaoRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<ListaEmbarcacao> getAllListaEmbarcacaos() {
         EntityManager em = emf.createEntityManager();

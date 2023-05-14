@@ -1,7 +1,9 @@
 package PedidoManutencao;
 
 import Embarcacao.Embarcacao;
+import Fatura.Fatura;
 import Oficina.Oficina;
+import PedidoDescricao.PedidoDescricao;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
@@ -37,6 +39,10 @@ public class PedidoManutencao {
     private Integer idfatura;
 
     @ManyToOne
+    @JoinColumn(name = "descricao", updatable = false, insertable = false)
+    private PedidoDescricao pedidoDescricao;
+
+    @ManyToOne
     @JoinColumn(name = "idembarcacao", updatable = false, insertable = false)
     private Embarcacao embarcacao;
 
@@ -47,6 +53,26 @@ public class PedidoManutencao {
     @ManyToOne
     @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
     private Utilizador utilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "idfatura", updatable = false, insertable = false)
+    private Fatura fatura;
+
+    public Fatura getFatura() {
+        return fatura;
+    }
+
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
+
+    public PedidoDescricao getPedidoDescricao() {
+        return pedidoDescricao;
+    }
+
+    public void setPedidoDescricao(PedidoDescricao pedidoDescricao) {
+        this.pedidoDescricao = pedidoDescricao;
+    }
 
     public Utilizador getUtilizador() {
         return utilizador;

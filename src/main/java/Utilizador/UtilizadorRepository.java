@@ -1,6 +1,7 @@
 package Utilizador;
 
 import Embarcacao.Embarcacao;
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class UtilizadorRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<Utilizador> getAllUtilizadores() {
         EntityManager em = emf.createEntityManager();
@@ -98,7 +99,7 @@ public class UtilizadorRepository {
 
     public boolean isUserAlreadyRegistered(String username, String password) {
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT COUNT(u) FROM Utilizador u WHERE u.username = :username AND u.password = :password");
+        Query query = em.createQuery("SELECT COUNT(u) FROM Utilizador u WHERE u.username = :username AND u.password = :password AND u.idtipoutilizador != 3");
         query.setParameter("username", username);
         query.setParameter("password", password);
         Long count = (Long) query.getSingleResult();
@@ -109,6 +110,13 @@ public class UtilizadorRepository {
         EntityManager em = emf.createEntityManager();
         Query query = em.createQuery("SELECT u FROM Utilizador u WHERE u.nome = :nome");
         query.setParameter("nome", nome);
+        return (Utilizador) query.getSingleResult();
+    }
+
+    public Utilizador findByUserName(String username) {
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("SELECT u FROM Utilizador u WHERE u.username = :username");
+        query.setParameter("username", username);
         return (Utilizador) query.getSingleResult();
     }
 

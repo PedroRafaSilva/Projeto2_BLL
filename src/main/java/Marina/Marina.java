@@ -1,7 +1,11 @@
 package Marina;
 
 import CodPostal.CodPostal;
+import Embarcacao.Embarcacao;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Marina\"")
@@ -16,6 +20,30 @@ public class Marina {
     @Basic
     @Column(name = "cpostal")
     private String cpostal;
+
+    @OneToMany(mappedBy = "marina", orphanRemoval = true)
+    @OrderBy("nome")
+    private List<Embarcacao> embarcacaos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "cpostal", updatable = false, insertable = false)
+    private CodPostal codPostal;
+
+    public CodPostal getCodPostal() {
+        return codPostal;
+    }
+
+    public void setCodPostal(CodPostal codPostal) {
+        this.codPostal = codPostal;
+    }
+
+    public List<Embarcacao> getEmbarcacaos() {
+        return embarcacaos;
+    }
+
+    public void setEmbarcacaos(List<Embarcacao> embarcacaos) {
+        this.embarcacaos = embarcacaos;
+    }
 
     public int getIdmarina() {
         return idmarina;

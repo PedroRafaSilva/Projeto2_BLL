@@ -25,5 +25,9 @@ public class ListaEstadoFaturaService {
     public void deleteListaEstadoFatura(int id, int id2) {
         listaEstadoFaturaRepository.deleteListaEstadoFatura(id, id2);
     }
+
+    public ListaEstadoFatura findEstadoByFatura(int idFatura){
+        return listaEstadoFaturaRepository.findEstadoByFatura(idFatura);
+    }
 }
 

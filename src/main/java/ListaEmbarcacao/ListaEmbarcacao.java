@@ -1,5 +1,7 @@
 package ListaEmbarcacao;
 
+import Embarcacao.Embarcacao;
+import Fatura.Fatura;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +19,30 @@ public class ListaEmbarcacao {
     @Basic
     @Column(name = "valorpagar")
     private Float valorpagar;
+
+    @ManyToOne
+    @JoinColumn(name = "idfatura", updatable = false, insertable = false)
+    private Fatura fatura;
+
+    @ManyToOne
+    @JoinColumn(name = "idembarcacao", updatable = false, insertable = false)
+    private Embarcacao embarcacao;
+
+    public Embarcacao getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(Embarcacao embarcacao) {
+        this.embarcacao = embarcacao;
+    }
+
+    public Fatura getFatura() {
+        return fatura;
+    }
+
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
 
     public int getIdfatura() {
         return idfatura;

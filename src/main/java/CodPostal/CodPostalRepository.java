@@ -1,5 +1,6 @@
 package CodPostal;
 
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class CodPostalRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<CodPostal> getAllCodPostals() {
         EntityManager em = emf.createEntityManager();

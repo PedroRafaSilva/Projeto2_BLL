@@ -1,6 +1,10 @@
 package TipoUtilizador;
 
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"TipoUtilizador\"")
@@ -12,6 +16,17 @@ public class TipoUtilizador {
     @Basic
     @Column(name = "descricao")
     private String descricao;
+
+    @OneToMany(mappedBy = "tipoUtilizador", cascade = CascadeType.REMOVE)
+    private List<Utilizador> utilizadores = new ArrayList<>();
+
+    public List<Utilizador> getUtilizadores() {
+        return utilizadores;
+    }
+
+    public void setUtilizadores(List<Utilizador> utilizadores) {
+        this.utilizadores = utilizadores;
+    }
 
     public int getIdtipoutilizador() {
         return idtipoutilizador;

@@ -1,6 +1,11 @@
 package EstadoPagamento;
 
+import ListaEstadoFatura.ListaEstadoFatura;
+import Pagamento.Pagamento;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"EstadoPagamento\"")
@@ -12,6 +17,17 @@ public class EstadoPagamento {
     @Basic
     @Column(name = "estado")
     private String estado;
+
+    @OneToMany(mappedBy = "estadoPagamento", cascade = CascadeType.REMOVE)
+    private List<ListaEstadoFatura> listaEstadoFaturas = new ArrayList<>();
+
+    public List<ListaEstadoFatura> getListaEstadoFaturas() {
+        return listaEstadoFaturas;
+    }
+
+    public void setListaEstadoFaturas(List<ListaEstadoFatura> listaEstadoFaturas) {
+        this.listaEstadoFaturas = listaEstadoFaturas;
+    }
 
     public int getIdestado() {
         return idestado;

@@ -1,17 +1,31 @@
 package EstadoAgendamento;
 
+import ListaEstadoAgendamento.ListaEstadoAgendamento;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"EstadoAgendamento\"")
 public class EstadoAgendamento {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "idestado")
     private int idestado;
     @Basic
     @Column(name = "estado")
     private String estado;
+
+    @OneToMany(mappedBy = "estadoAgendamento", cascade = CascadeType.REMOVE)
+    private List<ListaEstadoAgendamento> listaEstadoAgendamentoes = new ArrayList<>();
+
+    public List<ListaEstadoAgendamento> getListaEstadoAgendamentoes() {
+        return listaEstadoAgendamentoes;
+    }
+
+    public void setListaEstadoAgendamentoes(List<ListaEstadoAgendamento> listaEstadoAgendamentoes) {
+        this.listaEstadoAgendamentoes = listaEstadoAgendamentoes;
+    }
 
     public int getIdestado() {
         return idestado;

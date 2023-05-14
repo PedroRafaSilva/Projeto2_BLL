@@ -1,5 +1,8 @@
 package Pagamento;
 
+import EstadoPagamento.EstadoPagamento;
+import Fatura.Fatura;
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -26,6 +29,30 @@ public class Pagamento {
     @Basic
     @Column(name = "idfatura")
     private Integer idfatura;
+
+    @ManyToOne
+    @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
+    private Utilizador utilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "idfatura", updatable = false, insertable = false)
+    private Fatura fatura;
+
+    public Fatura getFatura() {
+        return fatura;
+    }
+
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
 
     public int getIdpagamento() {
         return idpagamento;

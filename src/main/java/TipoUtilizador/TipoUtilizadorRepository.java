@@ -1,5 +1,6 @@
 package TipoUtilizador;
 
+import Main.EntityManagerFactorySingleton;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class TipoUtilizadorRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<TipoUtilizador> getAllTipoUtilizadors() {
         EntityManager em = emf.createEntityManager();

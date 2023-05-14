@@ -1,5 +1,7 @@
 package ListaEstadoFatura;
 
+import EstadoPagamento.EstadoPagamento;
+import Fatura.Fatura;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -19,6 +21,30 @@ public class ListaEstadoFatura {
     @Basic
     @Column(name = "data")
     private Date data;
+
+    @ManyToOne
+    @JoinColumn(name = "idfatura", updatable = false, insertable = false)
+    private Fatura fatura;
+
+    @ManyToOne
+    @JoinColumn(name = "idestado", updatable = false, insertable = false)
+    private EstadoPagamento estadoPagamento;
+
+    public Fatura getFatura() {
+        return fatura;
+    }
+
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
+
+    public EstadoPagamento getEstadoPagamento() {
+        return estadoPagamento;
+    }
+
+    public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
+        this.estadoPagamento = estadoPagamento;
+    }
 
     public int getIdfatura() {
         return idfatura;

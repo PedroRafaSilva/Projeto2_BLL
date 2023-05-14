@@ -3,7 +3,8 @@ package Comprimento;
 import Embarcacao.Embarcacao;
 import jakarta.persistence.*;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Comprimento\"")
@@ -19,6 +20,17 @@ public class Comprimento {
     @Column(name = "valorcomprimento")
     private Float valorcomprimento;
 
+    @OneToMany(mappedBy = "comprimento", cascade = CascadeType.REMOVE)
+    @OrderBy("nome")
+    private List<Embarcacao> embarcacaos = new ArrayList<>();
+
+    public List<Embarcacao> getEmbarcacaos() {
+        return embarcacaos;
+    }
+
+    public void setEmbarcacaos(List<Embarcacao> embarcacaos) {
+        this.embarcacaos = embarcacaos;
+    }
 
     public int getComprimento() {
         return comprimento;

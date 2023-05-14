@@ -5,7 +5,9 @@ import Oficina.Oficina;
 import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"CodPostal\"")
@@ -17,6 +19,28 @@ public class CodPostal {
     @Basic
     @Column(name = "localidade")
     private String localidade;
+    @OneToMany(mappedBy = "codPostal", cascade = CascadeType.REMOVE)
+    private List<Marina> marinas = new ArrayList<>();
+    @OneToMany(mappedBy = "codPostal", cascade = CascadeType.REMOVE)
+    private List<Oficina> oficinas = new ArrayList<>();
+
+
+
+    public List<Oficina> getOficinas() {
+        return oficinas;
+    }
+
+    public void setOficinas(List<Oficina> oficinas) {
+        this.oficinas = oficinas;
+    }
+
+    public List<Marina> getMarinas() {
+        return marinas;
+    }
+
+    public void setMarinas(List<Marina> marinas) {
+        this.marinas = marinas;
+    }
 
     public String getCpostal() {
         return cpostal;
@@ -33,6 +57,8 @@ public class CodPostal {
     public void setLocalidade(String localidade) {
         this.localidade = localidade;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -1,7 +1,11 @@
 package Oficina;
 
 import CodPostal.CodPostal;
+import PedidoManutencao.PedidoManutencao;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Oficina\"")
@@ -16,6 +20,29 @@ public class Oficina {
     @Basic
     @Column(name = "cpostal")
     private String cpostal;
+
+    @ManyToOne
+    @JoinColumn(name = "cpostal", updatable = false, insertable = false)
+    private CodPostal codPostal;
+
+    @OneToMany(mappedBy = "oficina", cascade = CascadeType.REMOVE)
+    private List<PedidoManutencao> pedidoManutencaos = new ArrayList<>();
+
+    public List<PedidoManutencao> getPedidoManutencaos() {
+        return pedidoManutencaos;
+    }
+
+    public void setPedidoManutencaos(List<PedidoManutencao> pedidoManutencaos) {
+        this.pedidoManutencaos = pedidoManutencaos;
+    }
+
+    public CodPostal getCodPostal() {
+        return codPostal;
+    }
+
+    public void setCodPostal(CodPostal codPostal) {
+        this.codPostal = codPostal;
+    }
 
     public int getIdoficina() {
         return idoficina;

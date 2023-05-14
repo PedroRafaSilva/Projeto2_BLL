@@ -1,8 +1,15 @@
 package Fatura;
 
+import ListaEmbarcacao.ListaEmbarcacao;
+import ListaEstadoFatura.ListaEstadoFatura;
+import Pagamento.Pagamento;
+import PedidoManutencao.PedidoManutencao;
+import Utilizador.Utilizador;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "\"Projecto1\".\"Fatura\"")
@@ -32,9 +39,67 @@ public class Fatura {
     @Basic
     @Column(name = "idutilizador")
     private Integer idutilizador;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic
     @Column(name = "numfiscal")
     private Integer numfiscal;
+
+    @OneToMany(mappedBy = "fatura", cascade = CascadeType.REMOVE)
+    private List<ListaEmbarcacao> listaEmbarcacaos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "idutilizador", updatable = false, insertable = false)
+    private Utilizador utilizador;
+
+    @OneToMany(mappedBy = "fatura", cascade = CascadeType.REMOVE)
+    private List<ListaEstadoFatura> listaEstadoFaturas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "fatura", cascade = CascadeType.REMOVE)
+    private List<Pagamento> pagamentos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "fatura", cascade = CascadeType.REMOVE)
+    private List<PedidoManutencao> pedidoManutencaos = new ArrayList<>();
+
+    public List<PedidoManutencao> getPedidoManutencaos() {
+        return pedidoManutencaos;
+    }
+
+    public void setPedidoManutencaos(List<PedidoManutencao> pedidoManutencaos) {
+        this.pedidoManutencaos = pedidoManutencaos;
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(List<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
+
+    public List<ListaEstadoFatura> getListaEstadoFaturas() {
+        return listaEstadoFaturas;
+    }
+
+    public void setListaEstadoFaturas(List<ListaEstadoFatura> listaEstadoFaturas) {
+        this.listaEstadoFaturas = listaEstadoFaturas;
+    }
+
+    public List<ListaEmbarcacao> getListaEmbarcacaos() {
+        return listaEmbarcacaos;
+    }
+
+    public void setListaEmbarcacaos(List<ListaEmbarcacao> listaEmbarcacaos) {
+        this.listaEmbarcacaos = listaEmbarcacaos;
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
 
     public int getIdfatura() {
         return idfatura;

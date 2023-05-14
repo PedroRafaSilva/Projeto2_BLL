@@ -1,5 +1,6 @@
 package Oficina;
 
+import Main.EntityManagerFactorySingleton;
 import Oficina.Oficina;
 import jakarta.persistence .*;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class OficinaRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<Oficina> getAllOficinas() {
         EntityManager em = emf.createEntityManager();

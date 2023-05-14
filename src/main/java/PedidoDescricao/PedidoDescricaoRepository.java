@@ -1,5 +1,6 @@
 package PedidoDescricao;
 
+import Main.EntityManagerFactorySingleton;
 import PedidoDescricao.PedidoDescricao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class PedidoDescricaoRepository {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+    EntityManagerFactory emf = EntityManagerFactorySingleton.getEntityManagerFactory();
 
     public List<PedidoDescricao> getAllPedidoDescricaos() {
         EntityManager em = emf.createEntityManager();
