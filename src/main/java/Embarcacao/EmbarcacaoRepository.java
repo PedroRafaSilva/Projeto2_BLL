@@ -56,7 +56,6 @@ public class EmbarcacaoRepository {
         em.persist(embarcacao);
         em.getTransaction().commit();
         em.close();
-        emf.close();
     }
 
     public Embarcacao getEmbarcacaoById(int id) {
